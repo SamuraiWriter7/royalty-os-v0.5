@@ -1,0 +1,521 @@
+{
+"$schema": "https://json-schema.org/draft/2020-12/schema",
+"$id": "https://github.com/SamuraiWriter7/royalty-os-v0.5/schemas/trace-fingerprint.schema.json",
+"title": "Personal Trace Fingerprint Record",
+"description": "Schema for validating a personal trace fingerprint record in Royalty OS v0.5. A trace fingerprint is a reviewable structure representing an individual's intellectual traces. It is not automatic proof of ownership, infringement, compensation, or claim validity.",
+"type": "object",
+"additionalProperties": false,
+"required": [
+"trace_id",
+"schema_version",
+"trace_name",
+"trace_type",
+"status",
+"owner_reference",
+"agent_reference",
+"trace_elements",
+"review_policy",
+"boundary_policy",
+"created_at"
+],
+"properties": {
+"trace_id": {
+"type": "string",
+"description": "Unique identifier for the personal trace fingerprint.",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 160
+},
+"schema_version": {
+"type": "string",
+"description": "Schema version used by this record.",
+"const": "v0.5.0-draft"
+},
+"trace_name": {
+"type": "string",
+"description": "Human-readable name of the trace fingerprint.",
+"minLength": 1,
+"maxLength": 200
+},
+"trace_type": {
+"type": "string",
+"description": "Primary type of intellectual trace represented by this fingerprint.",
+"enum": [
+"writing_pattern",
+"question_structure",
+"prompt_pattern",
+"conceptual_framework",
+"classification_method",
+"reasoning_style",
+"terminology_set",
+"theory_structure",
+"authored_document",
+"public_post",
+"model_output_pattern",
+"mixed_trace_fingerprint"
+]
+},
+"status": {
+"type": "string",
+"description": "Current lifecycle status of the trace fingerprint.",
+"enum": [
+"draft",
+"registered",
+"active",
+"under_review",
+"disputed",
+"retired",
+"archived"
+]
+},
+"owner_reference": {
+"type": "object",
+"description": "Reference to the individual or entity associated with the trace fingerprint.",
+"additionalProperties": false,
+"required": [
+"owner_id",
+"owner_type"
+],
+"properties": {
+"owner_id": {
+"type": "string",
+"description": "Identifier for the individual or entity associated with the trace.",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 160
+},
+"owner_type": {
+"type": "string",
+"enum": [
+"individual",
+"creator",
+"researcher",
+"developer",
+"organization",
+"collective",
+"unknown"
+]
+},
+"display_name": {
+"type": "string",
+"description": "Optional display name for the owner reference.",
+"maxLength": 200
+}
+}
+},
+"agent_reference": {
+"type": "object",
+"description": "Reference to the personal AI agent managing or assisting with this trace fingerprint.",
+"additionalProperties": false,
+"required": [
+"agent_id"
+],
+"properties": {
+"agent_id": {
+"type": "string",
+"description": "Identifier of the personal AI agent.",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 160
+},
+"agent_role": {
+"type": "string",
+"description": "Role of the agent in relation to this trace.",
+"enum": [
+"trace_manager",
+"usage_detection_assistant",
+"review_preparation_assistant",
+"representative_event_logger"
+],
+"default": "trace_manager"
+}
+}
+},
+"source_references": {
+"type": "array",
+"description": "Optional references to documents, posts, prompts, models, repositories, or other sources associated with the trace.",
+"items": {
+"type": "object",
+"additionalProperties": false,
+"required": [
+"source_id",
+"source_type"
+],
+"properties": {
+"source_id": {
+"type": "string",
+"description": "Identifier for the source reference.",
+"pattern": "^[a-zA-Z0-9.*:/#-]+$",
+"minLength": 3,
+"maxLength": 300
+},
+"source_type": {
+"type": "string",
+"enum": [
+"document",
+"article",
+"book",
+"blog_post",
+"social_post",
+"prompt",
+"repository",
+"specification",
+"schema",
+"model_output",
+"conversation_excerpt",
+"dataset_reference",
+"other"
+]
+},
+"title": {
+"type": "string",
+"maxLength": 300
+},
+"public_url": {
+"type": "string",
+"format": "uri",
+"description": "Optional public URL for the source reference."
+},
+"created_at": {
+"type": "string",
+"format": "date-time"
+},
+"notes": {
+"type": "string",
+"maxLength": 1000
+}
+}
+}
+},
+"trace_elements": {
+"type": "array",
+"description": "Structured elements that make up the personal trace fingerprint.",
+"minItems": 1,
+"items": {
+"type": "object",
+"additionalProperties": false,
+"required": [
+"element_id",
+"element_type",
+"description"
+],
+"properties": {
+"element_id": {
+"type": "string",
+"description": "Identifier for the trace element.",
+"pattern": "^[a-zA-Z0-9._:-]+$",
+"minLength": 3,
+"maxLength": 160
+},
+"element_type": {
+"type": "string",
+"enum": [
+"writing_pattern",
+"question_structure",
+"prompt_pattern",
+"conceptual_framework",
+"classification_method",
+"reasoning_style",
+"terminology",
+"theory_structure",
+"value_pattern",
+"document_structure",
+"model_output_pattern",
+"expression_style",
+"metaphor_pattern",
+"argument_structure",
+"other"
+]
+},
+"description": {
+"type": "string",
+"description": "Plain-language description of the trace element.",
+"minLength": 1,
+"maxLength": 2000
+},
+"keywords": {
+"type": "array",
+"description": "Optional keywords associated with this trace element.",
+"uniqueItems": true,
+"items": {
+"type": "string",
+"minLength": 1,
+"maxLength": 100
+}
+},
+"evidence_references": {
+"type": "array",
+"description": "Optional references to evidence supporting this trace element.",
+"items": {
+"type": "string",
+"maxLength": 300
+}
+},
+"sensitivity": {
+"type": "string",
+"description": "Sensitivity level of the trace element.",
+"enum": [
+"public",
+"limited",
+"private",
+"sensitive"
+],
+"default": "public"
+}
+}
+}
+},
+"fingerprint_method": {
+"type": "object",
+"description": "Optional method information describing how the fingerprint was generated or structured.",
+"additionalProperties": false,
+"properties": {
+"method_type": {
+"type": "string",
+"enum": [
+"manual",
+"agent_assisted",
+"human_reviewed_agent_assisted",
+"hash_reference",
+"semantic_summary",
+"hybrid"
+]
+},
+"method_description": {
+"type": "string",
+"maxLength": 1500
+},
+"hash_algorithm": {
+"type": "string",
+"enum": [
+"none",
+"sha256",
+"sha512",
+"blake3",
+"other"
+],
+"default": "none"
+},
+"hash_value": {
+"type": "string",
+"description": "Optional hash value if a hash-based reference is used.",
+"maxLength": 512
+},
+"human_reviewed": {
+"type": "boolean",
+"default": false
+}
+}
+},
+"confidence_policy": {
+"type": "object",
+"description": "Policy for representing confidence without implying proof.",
+"additionalProperties": false,
+"properties": {
+"default_confidence_level": {
+"type": "string",
+"enum": [
+"unknown",
+"low",
+"medium",
+"high",
+"requires_human_review"
+],
+"default": "requires_human_review"
+},
+"confidence_is_not_proof": {
+"type": "boolean",
+"const": true
+},
+"human_review_required_for_high_confidence": {
+"type": "boolean",
+"default": true
+}
+}
+},
+"review_policy": {
+"type": "object",
+"description": "Review requirements for use of this trace fingerprint.",
+"additionalProperties": false,
+"required": [
+"human_review_required",
+"review_required_for"
+],
+"properties": {
+"human_review_required": {
+"type": "boolean",
+"const": true
+},
+"review_required_for": {
+"type": "array",
+"minItems": 1,
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"ownership_interpretation",
+"attribution_assessment",
+"usage_detection",
+"claim_route_creation",
+"compensation_assessment",
+"public_disclosure",
+"external_sharing",
+"governance_action"
+]
+}
+},
+"default_review_status": {
+"type": "string",
+"enum": [
+"unreviewed",
+"under_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"escalated",
+"archived",
+"resolved"
+],
+"default": "unreviewed"
+}
+}
+},
+"boundary_policy": {
+"type": "object",
+"description": "Boundary rules for interpreting the trace fingerprint.",
+"additionalProperties": false,
+"required": [
+"not_ownership_proof",
+"not_infringement_proof",
+"not_compensation_proof",
+"similarity_is_not_proof",
+"requires_human_review"
+],
+"properties": {
+"not_ownership_proof": {
+"type": "boolean",
+"const": true
+},
+"not_infringement_proof": {
+"type": "boolean",
+"const": true
+},
+"not_compensation_proof": {
+"type": "boolean",
+"const": true
+},
+"similarity_is_not_proof": {
+"type": "boolean",
+"const": true
+},
+"requires_human_review": {
+"type": "boolean",
+"const": true
+}
+}
+},
+"privacy_policy": {
+"type": "object",
+"description": "Privacy constraints for this trace fingerprint.",
+"additionalProperties": false,
+"properties": {
+"minimal_disclosure": {
+"type": "boolean",
+"default": true
+},
+"private_trace_data_allowed": {
+"type": "boolean",
+"description": "Whether private trace data may be exposed outside the agent boundary. This should normally be false.",
+"default": false
+},
+"public_summary_allowed": {
+"type": "boolean",
+"default": true
+},
+"external_sharing_requires_review": {
+"type": "boolean",
+"default": true
+}
+}
+},
+"related_routes": {
+"type": "object",
+"description": "Optional references to related attribution, claim, or usage detection routes.",
+"additionalProperties": false,
+"properties": {
+"usage_detection_events": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 200
+}
+},
+"attribution_routes": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 200
+}
+},
+"claim_routes": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 200
+}
+},
+"value_graph_nodes": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 200
+}
+}
+}
+},
+"external_references": {
+"type": "object",
+"description": "Optional references to related specs, documents, repositories, or systems.",
+"additionalProperties": false,
+"properties": {
+"royalty_os_version": {
+"type": "string",
+"default": "v0.5.0-draft"
+},
+"related_specs": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 256
+}
+},
+"related_docs": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 256
+}
+},
+"related_agent": {
+"type": "string",
+"maxLength": 200
+}
+}
+},
+"notes": {
+"type": "string",
+"description": "Optional notes about this trace fingerprint.",
+"maxLength": 3000
+},
+"created_at": {
+"type": "string",
+"description": "Creation timestamp in date-time format.",
+"format": "date-time"
+},
+"updated_at": {
+"type": "string",
+"description": "Last update timestamp in date-time format.",
+"format": "date-time"
+}
+}
+}
