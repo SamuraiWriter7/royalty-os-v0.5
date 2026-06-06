@@ -1,0 +1,534 @@
+royalty_os:
+version: "v0.5.0-draft"
+name: "Royalty OS v0.5"
+title: "Personal AI Agent Royalty OS"
+subtitle: "Agent-Mediated Value Routing Architecture"
+status: "draft"
+schema_locked: false
+release_track: "conceptual-specification"
+extends:
+version: "v0.4"
+title: "Dynamic Value Relationship OS"
+description: >
+Royalty OS v0.5 extends the dynamic value relationship infrastructure
+of v0.4 by introducing a personal AI agent representative layer.
+
+metadata:
+created_for: "Royalty OS v0.5"
+primary_layer: "Personal AI Agent Royalty Layer"
+purpose: >
+Define how personal AI agents may assist individuals in managing
+intellectual trace fingerprints, detecting AI-mediated usage, routing
+attribution or claim relationships, and preparing human-reviewed value
+return pathways.
+core_principle: >
+Personal AI agents assist with trace management and value routing.
+They do not automatically decide ownership, compensation, payment,
+or enforcement.
+relationship_to_v0_4: >
+v0.4 structures value relationships. v0.5 introduces personal AI
+agents that help individuals manage those structured relationships.
+
+overview:
+summary: >
+Royalty OS v0.5 introduces a Personal AI Agent Royalty Layer.
+This layer allows individuals to be represented within AI-era value
+circulation through trace fingerprints, usage detection events,
+attribution routes, claim routes, and human-reviewed return pathways.
+short_form:
+v0_4: "relationship infrastructure"
+v0_5: "representative infrastructure"
+japanese_summary: >
+v0.4 は価値関係を整えるOSであり、v0.5 は個人AI代理人が
+その価値関係を代理管理するOSである。
+
+design_principles:
+
+* id: "human_review_required"
+  name: "Human Review Required"
+  description: >
+  The system must preserve human review for attribution, claims,
+  compensation, and governance decisions.
+
+* id: "no_automatic_ownership"
+  name: "No Automatic Ownership Determination"
+  description: >
+  The system must not automatically determine ownership from trace
+  similarity, usage detection, or model behavior similarity.
+
+* id: "no_automatic_compensation"
+  name: "No Automatic Compensation Execution"
+  description: >
+  The system must not automatically calculate or execute compensation
+  without external review, authorization, or settlement processes.
+
+* id: "agent_as_representative"
+  name: "Agent as Representative"
+  description: >
+  A personal AI agent acts as a representative interface for an individual.
+  It does not become the owner of the intellectual trace or value route.
+
+* id: "trace_as_reviewable_structure"
+  name: "Trace as Reviewable Structure"
+  description: >
+  Trace fingerprints are treated as reviewable evidence structures,
+  not automatic legal claims.
+
+* id: "governance_before_execution"
+  name: "Governance Before Execution"
+  description: >
+  Attribution, claim, and return pathways should pass through policy
+  and governance review before any external execution.
+
+architecture:
+layers:
+- id: "human_intelligence_layer"
+name: "Human Intelligence Layer"
+description: >
+The source layer where questions, writings, concepts, prompts,
+structures, theories, and creative patterns originate.
+
+```
+- id: "personal_ai_agent_layer"
+  name: "Personal AI Agent Layer"
+  description: >
+    The representative layer that assists individuals in managing
+    intellectual trace fingerprints, usage detection, attribution
+    routes, claim routes, and value return pathways.
+
+- id: "trace_management_layer"
+  name: "Trace Management Layer"
+  description: >
+    The layer responsible for registering, referencing, and reviewing
+    personal trace fingerprints.
+
+- id: "usage_detection_layer"
+  name: "Agent-Mediated Usage Detection Layer"
+  description: >
+    The layer where possible usage, reuse, transformation, summary,
+    reference, or transmission of personal traces may be detected.
+
+- id: "value_event_layer"
+  name: "Value Event Layer"
+  description: >
+    The layer that converts detected usage candidates into reviewable
+    value event candidates.
+
+- id: "value_graph_layer"
+  name: "Value Graph Layer"
+  description: >
+    The layer inherited from v0.4 that structures relationships between
+    traces, agents, events, claims, policies, and governance actions.
+
+- id: "policy_governance_layer"
+  name: "Policy and Governance Review Layer"
+  description: >
+    The layer that reviews attribution, claim, boundary, confidence,
+    and return-route contexts.
+
+- id: "return_route_layer"
+  name: "Human-Reviewed Value Return Layer"
+  description: >
+    The layer that prepares attribution, acknowledgment, credit,
+    royalty intent, wallet reference, or external settlement routes
+    after review.
+```
+
+core_components:
+personal_ai_agent:
+description: >
+A personal AI agent is a representative AI system that assists an
+individual in managing intellectual traces and value relationships.
+allowed_roles:
+- "trace_manager"
+- "usage_detection_assistant"
+- "value_event_preparer"
+- "attribution_route_assistant"
+- "claim_route_assistant"
+- "review_preparation_assistant"
+- "return_route_assistant"
+prohibited_roles:
+- "automatic_owner"
+- "automatic_judge"
+- "automatic_payment_executor"
+- "automatic_legal_enforcer"
+- "automatic_infringement_accuser"
+
+personal_trace_fingerprint:
+description: >
+A structured reference layer representing an individual's intellectual
+traces. It may assist review of attribution, reuse, transformation,
+or derivative usage.
+possible_elements:
+- "writing_patterns"
+- "question_structures"
+- "prompt_patterns"
+- "conceptual_frameworks"
+- "classification_methods"
+- "reasoning_styles"
+- "terminology"
+- "theory_structures"
+- "authored_documents"
+- "model_outputs_associated_with_the_individual"
+boundary: >
+A personal trace fingerprint is not proof of ownership by itself.
+It is a reviewable structure.
+
+agent_mediated_usage_detection:
+description: >
+A process where a personal AI agent detects or assists in detecting
+possible usage of an individual's intellectual traces.
+usage_types:
+- "reference"
+- "summary"
+- "quotation"
+- "transformation"
+- "derivative_generation"
+- "conceptual_reuse"
+- "prompt_pattern_reuse"
+- "model_behavior_similarity"
+- "agent_to_agent_transmission"
+output: "value_event_candidate"
+boundary: >
+Usage detection creates a reviewable event candidate. It does not
+automatically create a valid claim.
+
+attribution_route:
+description: >
+A route that connects a detected value relationship back to a person,
+work, trace, prompt, structure, document, or agent.
+fields:
+- "source_trace_reference"
+- "detected_usage_reference"
+- "confidence_level"
+- "review_status"
+- "related_value_graph_node"
+- "supporting_evidence"
+- "human_reviewer_notes"
+- "governance_status"
+boundary: >
+Attribution routes are traceability structures, not payment routes.
+
+claim_route:
+description: >
+A possible pathway through which an individual, assisted by a personal
+AI agent, may request attribution, review, correction, dispute handling,
+or value return.
+claim_types:
+- "attribution_request"
+- "usage_review_request"
+- "correction_request"
+- "dispute_request"
+- "royalty_review_request"
+- "value_return_request"
+- "governance_escalation"
+boundary: >
+A claim route does not automatically enforce a claim. It structures
+the claim for responsible review.
+
+human_reviewed_value_return:
+description: >
+A human-reviewed return pathway that may include attribution,
+acknowledgment, citation, reputation credit, access credit,
+royalty intent, micro-royalty routing, wallet reference, or external
+settlement connection.
+possible_return_types:
+- "attribution"
+- "acknowledgment"
+- "citation"
+- "reputation_credit"
+- "access_credit"
+- "non_monetary_recognition"
+- "royalty_intent"
+- "micro_royalty_routing"
+- "wallet_reference"
+- "governance_reviewed_compensation_pathway"
+boundary: >
+Royalty OS v0.5 may reference return pathways, but does not directly
+execute payments.
+
+representative_event_log:
+description: >
+A log of actions performed by or through a personal AI agent.
+It provides transparency over agent-mediated activity.
+event_types:
+- "trace_registered"
+- "usage_detected"
+- "value_event_created"
+- "attribution_route_created"
+- "claim_route_created"
+- "human_review_requested"
+- "claim_rejected"
+- "claim_accepted_for_review"
+- "return_route_prepared"
+- "governance_escalated"
+- "wallet_reference_attached"
+
+value_flow:
+description: >
+Conceptual flow for agent-mediated value routing in Royalty OS v0.5.
+steps:
+- order: 1
+name: "Human intellectual trace is created"
+output: "personal_trace_candidate"
+
+```
+- order: 2
+  name: "Personal AI agent registers or references the trace"
+  output: "personal_trace_fingerprint"
+
+- order: 3
+  name: "Possible AI-mediated usage is detected"
+  output: "usage_detection_event"
+
+- order: 4
+  name: "Usage detection is converted into a value event candidate"
+  output: "value_event_candidate"
+
+- order: 5
+  name: "Candidate is linked to a value graph"
+  output: "value_graph_node"
+
+- order: 6
+  name: "Policy and governance review is requested"
+  output: "review_status"
+
+- order: 7
+  name: "Attribution route or claim route is prepared"
+  output: "route_candidate"
+
+- order: 8
+  name: "Human-reviewed value return pathway may be prepared"
+  output: "return_route_candidate"
+
+- order: 9
+  name: "External settlement or recognition systems may be referenced"
+  output: "external_route_reference"
+```
+
+relationship_to_v0_4:
+inherited_components:
+- "multi_layer_value_graph"
+- "policy_module_architecture"
+- "governance_action_extensions"
+- "dual_boundary_model"
+- "os_event_log"
+- "migration_mapping"
+
+added_components:
+- "personal_ai_agent"
+- "personal_trace_fingerprint"
+- "agent_mediated_usage_detection"
+- "attribution_route"
+- "claim_route"
+- "human_reviewed_value_return"
+- "representative_event_log"
+- "wallet_reference"
+
+transition_statement: >
+v0.4 structures value relationships. v0.5 introduces personal AI agents
+that help individuals manage those structured relationships.
+
+relationship_to_communication_royalty_os:
+description: >
+Royalty OS v0.5 prepares a bridge toward Communication Royalty OS by
+defining how individuals may be represented inside AI-to-AI communication
+value systems.
+conceptual_bridge:
+- "personal_trace"
+- "personal_ai_agent"
+- "ai_mediated_usage_detection"
+- "communication_event"
+- "value_event"
+- "value_graph"
+- "policy_review"
+- "attribution_route"
+- "claim_route"
+- "return_route"
+boundary: >
+Communication Royalty OS handles the communication value layer.
+Royalty OS v0.5 handles the personal representative layer.
+
+boundaries:
+must_not:
+- "automatically_determine_legal_ownership"
+- "automatically_calculate_compensation"
+- "automatically_execute_payments"
+- "automatically_enforce_claims"
+- "automatically_accuse_external_systems_of_misuse"
+- "treat_similarity_as_proof_of_infringement"
+- "replace_human_review"
+- "replace_legal_contractual_or_governance_processes"
+
+may:
+- "structure_possible_relationships"
+- "detect_possible_usage_patterns"
+- "record_trace_evidence"
+- "route_attribution_candidates"
+- "prepare_claim_candidates"
+- "support_human_review"
+- "connect_to_external_governance_or_settlement_systems"
+- "preserve_auditable_logs"
+
+non_goals:
+
+* "automatic_legal_judgment"
+* "automatic_ownership_resolution"
+* "automatic_copyright_enforcement"
+* "automatic_payment_execution"
+* "automatic_royalty_calculation"
+* "automatic_infringement_detection"
+* "automatic_platform_compliance_enforcement"
+
+governance:
+review_statuses:
+- "unreviewed"
+- "under_review"
+- "accepted_for_review"
+- "rejected"
+- "disputed"
+- "escalated"
+- "archived"
+- "resolved"
+
+confidence_levels:
+- "unknown"
+- "low"
+- "medium"
+- "high"
+- "requires_human_review"
+
+route_statuses:
+- "draft"
+- "candidate"
+- "submitted_for_review"
+- "accepted_for_review"
+- "rejected"
+- "disputed"
+- "prepared_for_external_process"
+- "closed"
+
+privacy_and_security:
+principles:
+- id: "minimal_disclosure"
+description: >
+Personal trace fingerprints should avoid exposing unnecessary
+private data.
+
+```
+- id: "reviewable_reference"
+  description: >
+    Trace data should be represented through reviewable references
+    whenever possible.
+
+- id: "wallet_reference_boundary"
+  description: >
+    Wallet references should not require exposing sensitive payment
+    credentials inside the core OS layer.
+
+- id: "agent_activity_transparency"
+  description: >
+    Actions performed by personal AI agents should be recorded in
+    representative event logs.
+```
+
+migration_from_v0_4:
+steps:
+- order: 1
+description: "Start with v0.4 value graph structures."
+
+```
+- order: 2
+  description: "Attach personal trace references to relevant value nodes."
+
+- order: 3
+  description: "Introduce personal AI agents as representative actors."
+
+- order: 4
+  description: "Allow agents to create usage detection events."
+
+- order: 5
+  description: "Convert usage detection events into reviewable value event candidates."
+
+- order: 6
+  description: "Route accepted candidates into attribution or claim structures."
+
+- order: 7
+  description: "Connect reviewed routes to return structures or external settlement layers."
+```
+
+draft_schema_plan:
+planned_schemas:
+- path: "schemas/personal-agent.schema.json"
+purpose: "Validate personal AI agent records."
+
+```
+- path: "schemas/trace-fingerprint.schema.json"
+  purpose: "Validate personal trace fingerprint records."
+
+- path: "schemas/usage-detection-event.schema.json"
+  purpose: "Validate agent-mediated usage detection events."
+
+- path: "schemas/claim-route.schema.json"
+  purpose: "Validate claim route structures."
+
+- path: "schemas/attribution-route.schema.json"
+  purpose: "Validate attribution route structures."
+
+- path: "schemas/representative-event.schema.json"
+  purpose: "Validate representative event log entries."
+```
+
+planned_examples:
+- path: "examples/personal-agent.example.yaml"
+purpose: "Example personal AI agent record."
+
+```
+- path: "examples/trace-fingerprint.example.yaml"
+  purpose: "Example personal trace fingerprint."
+
+- path: "examples/usage-detection-event.example.yaml"
+  purpose: "Example usage detection event."
+
+- path: "examples/claim-route.example.yaml"
+  purpose: "Example claim route."
+
+- path: "examples/agent-mediated-value-flow.example.yaml"
+  purpose: "Example end-to-end agent-mediated value flow."
+```
+
+open_questions:
+
+* "How should trace fingerprints be generated without exposing private data?"
+* "How should confidence levels be represented without implying legal proof?"
+* "How should personal agents interact with platform-level AI agents?"
+* "How should disputed claims be handled across multiple governance systems?"
+* "How should non-monetary value return be represented?"
+* "How should wallet references be stored without creating privacy or security risks?"
+* "How should Communication Royalty OS events be connected to personal claim routes?"
+* "How should human review be required, recorded, and audited?"
+
+compatibility:
+compatible_with:
+- "Royalty OS v0.4"
+- "Communication Royalty OS"
+- "Value Graph Architecture"
+- "Policy-Guided Review Architecture"
+incompatible_with:
+- "automatic_compensation_engine"
+- "automatic_ownership_engine"
+- "automatic_legal_enforcement_engine"
+
+status_notes:
+
+* "This draft defines conceptual structure first."
+* "Schemas and examples may be added after the v0.5 layer stabilizes."
+* "No automatic compensation, ownership, payment, or legal enforcement is included."
+* "The personal AI agent is a representative interface, not a value owner."
+
+core_statement: >
+Royalty OS v0.5 defines a responsible middle layer between human
+intelligence and AI-era value circulation. It allows individuals to
+appear inside value networks through personal AI representation,
+trace management, attribution routing, claim preparation, and
+human-reviewed value return pathways.
