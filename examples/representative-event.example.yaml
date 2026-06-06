@@ -1,0 +1,152 @@
+representative_event_id: "representative:event:sample-001"
+schema_version: "v0.5.0-draft"
+event_type: "return_route_prepared"
+status: "recorded"
+
+actor_agent:
+agent_id: "agent:personal:sample-001"
+agent_role: "return_route_assistant"
+agent_record_reference: "examples/personal-agent.example.yaml"
+
+represented_individual:
+individual_id: "individual:creator:sample-001"
+individual_type: "creator"
+display_name: "Sample Creator"
+
+event_subject:
+subject_id: "return:route:sample-001"
+subject_type: "return_route"
+subject_record_reference: "examples/return-route.example.yaml"
+subject_status: "candidate"
+
+event_action:
+action_type: "prepared"
+action_summary: >
+The personal AI agent prepared a return route candidate on behalf of
+the represented creator. The return route connects the claim route,
+attribution route, usage detection event, and personal trace fingerprint
+into a human-reviewed value return pathway. This event records the
+representative action for auditability only and does not execute payment,
+enforce a claim, determine ownership, or establish compensation.
+action_result: "route_created"
+triggered_by: "claim:route:sample-001"
+
+related_records:
+personal_agent: "agent:personal:sample-001"
+trace_fingerprint: "trace:personal:sample-001"
+usage_detection_event: "usage:event:sample-001"
+value_event_candidate: "value:event:candidate:sample-001"
+attribution_route: "attribution:route:sample-001"
+claim_route: "claim:route:sample-001"
+return_route: "return:route:sample-001"
+wallet_reference: "wallet:reference:sample-001"
+value_graph_node: "value:graph:node:sample-001"
+value_graph_edge: "value:graph:edge:sample-001"
+
+review_context:
+review_status: "unreviewed"
+review_requested: true
+reviewer_notes: >
+This representative event records that a return route candidate was
+prepared. Human and governance review are required before any attribution,
+public disclosure, compensation assessment, wallet reference usage,
+external settlement preparation, or payment execution.
+review_reference: "review:request:sample-001"
+
+evidence:
+evidence_summary: >
+This representative event is associated with the related personal agent,
+trace fingerprint, usage detection event, attribution route, claim route,
+and return route records. These references support auditability of the
+agent-mediated workflow, but they do not prove ownership, infringement,
+compensation, payment obligation, or claim validity.
+evidence_references:
+- "examples/personal-agent.example.yaml"
+- "examples/trace-fingerprint.example.yaml"
+- "examples/usage-detection-event.example.yaml"
+- "examples/attribution-route.example.yaml"
+- "examples/claim-route.example.yaml"
+- "examples/return-route.example.yaml"
+private_evidence_included: false
+
+review_policy:
+human_review_required: true
+review_required_for:
+- "ownership_interpretation"
+- "usage_interpretation"
+- "attribution_interpretation"
+- "claim_interpretation"
+- "return_interpretation"
+- "compensation_assessment"
+- "payment_execution"
+- "wallet_reference"
+- "public_disclosure"
+- "external_sharing"
+- "external_process"
+- "governance_action"
+- "escalation"
+default_review_status: "unreviewed"
+
+boundary_policy:
+not_ownership_proof: true
+not_infringement_proof: true
+not_compensation_proof: true
+not_payment_instruction: true
+not_claim_validity_proof: true
+representative_event_is_not_execution: true
+similarity_is_not_proof: true
+requires_human_review: true
+no_automatic_accusation: true
+no_automatic_enforcement: true
+no_automatic_payment: true
+
+privacy_policy:
+minimal_disclosure: true
+private_trace_data_included: false
+private_evidence_included: false
+sensitive_wallet_credentials_included: false
+public_summary_allowed: true
+external_sharing_requires_review: true
+
+governance:
+governance_status: "review_requested"
+governance_actions:
+- "review_request"
+- "return_route_review"
+- "compensation_review"
+- "external_process_review"
+governance_notes: >
+This representative event should be reviewed as part of the return route
+workflow. It records an agent-mediated preparation action only. It does
+not create automatic legal, financial, or enforcement consequences.
+
+audit:
+audit_required: true
+audit_status: "pending"
+audit_reference: "audit:representative-event:sample-001"
+log_sequence: 1
+
+external_references:
+royalty_os_version: "v0.5.0-draft"
+related_specs:
+- "specs/royalty-os-v0.5-draft.yaml"
+related_docs:
+- "docs/v0.5-structural-diff.md"
+- "docs/personal-ai-agent-royalty-os.md"
+related_agent: "agent:personal:sample-001"
+related_trace: "trace:personal:sample-001"
+related_usage_event: "usage:event:sample-001"
+related_attribution_route: "attribution:route:sample-001"
+related_claim_route: "claim:route:sample-001"
+related_return_route: "return:route:sample-001"
+
+notes: >
+This example defines a representative event created by a personal AI
+agent. It records that a return route candidate was prepared on behalf
+of a represented creator. The event exists for transparency, auditability,
+and governance review. It does not prove ownership, infringement,
+compensation, payment obligation, or claim validity, and it does not
+execute payment or enforcement.
+
+created_at: "2026-06-06T00:00:00Z"
+updated_at: "2026-06-06T00:00:00Z"
