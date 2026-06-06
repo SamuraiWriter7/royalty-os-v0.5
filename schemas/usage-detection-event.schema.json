@@ -1,0 +1,554 @@
+{
+"$schema": "https://json-schema.org/draft/2020-12/schema",
+"$id": "https://github.com/SamuraiWriter7/royalty-os-v0.5/schemas/usage-detection-event.schema.json",
+"title": "Agent-Mediated Usage Detection Event",
+"description": "Schema for validating an agent-mediated usage detection event in Royalty OS v0.5. A usage detection event records possible usage of a personal trace fingerprint. It is a reviewable event candidate and must not be treated as automatic proof of ownership, infringement, compensation, or claim validity.",
+"type": "object",
+"additionalProperties": false,
+"required": [
+"event_id",
+"schema_version",
+"event_type",
+"status",
+"detecting_agent",
+"source_trace_reference",
+"detected_usage_reference",
+"usage_assessment",
+"review_policy",
+"boundary_policy",
+"created_at"
+],
+"properties": {
+"event_id": {
+"type": "string",
+"description": "Unique identifier for the usage detection event.",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 180
+},
+"schema_version": {
+"type": "string",
+"description": "Schema version used by this record.",
+"const": "v0.5.0-draft"
+},
+"event_type": {
+"type": "string",
+"description": "Type of usage detection event.",
+"const": "agent_mediated_usage_detection"
+},
+"status": {
+"type": "string",
+"description": "Current lifecycle status of the usage detection event.",
+"enum": [
+"draft",
+"detected",
+"candidate",
+"under_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"escalated",
+"archived",
+"resolved"
+]
+},
+"detecting_agent": {
+"type": "object",
+"description": "Reference to the personal AI agent that detected or prepared the usage detection event.",
+"additionalProperties": false,
+"required": [
+"agent_id",
+"agent_role"
+],
+"properties": {
+"agent_id": {
+"type": "string",
+"description": "Identifier of the personal AI agent.",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 160
+},
+"agent_role": {
+"type": "string",
+"description": "Role of the agent in this usage detection event.",
+"enum": [
+"usage_detection_assistant",
+"trace_manager",
+"value_event_preparer",
+"review_preparation_assistant",
+"representative_event_logger"
+]
+},
+"agent_record_reference": {
+"type": "string",
+"description": "Optional reference to a personal agent record.",
+"maxLength": 300
+}
+}
+},
+"represented_individual": {
+"type": "object",
+"description": "Optional reference to the individual represented by the detecting agent.",
+"additionalProperties": false,
+"properties": {
+"individual_id": {
+"type": "string",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 160
+},
+"display_name": {
+"type": "string",
+"maxLength": 200
+}
+}
+},
+"source_trace_reference": {
+"type": "object",
+"description": "Reference to the personal trace fingerprint that may have been used, referenced, transformed, summarized, or transmitted.",
+"additionalProperties": false,
+"required": [
+"trace_id",
+"trace_type"
+],
+"properties": {
+"trace_id": {
+"type": "string",
+"description": "Identifier of the source trace fingerprint.",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 180
+},
+"trace_type": {
+"type": "string",
+"enum": [
+"writing_pattern",
+"question_structure",
+"prompt_pattern",
+"conceptual_framework",
+"classification_method",
+"reasoning_style",
+"terminology_set",
+"theory_structure",
+"authored_document",
+"public_post",
+"model_output_pattern",
+"mixed_trace_fingerprint"
+]
+},
+"trace_record_reference": {
+"type": "string",
+"description": "Optional reference to the trace fingerprint record.",
+"maxLength": 300
+},
+"trace_element_ids": {
+"type": "array",
+"description": "Optional list of specific trace element identifiers related to this detection event.",
+"uniqueItems": true,
+"items": {
+"type": "string",
+"maxLength": 180
+}
+}
+}
+},
+"detected_usage_reference": {
+"type": "object",
+"description": "Reference to the detected output, communication event, document, model output, or external artifact where possible usage was observed.",
+"additionalProperties": false,
+"required": [
+"usage_reference_id",
+"usage_source_type"
+],
+"properties": {
+"usage_reference_id": {
+"type": "string",
+"description": "Identifier for the detected usage reference.",
+"pattern": "^[a-zA-Z0-9.*:/#-]+$",
+"minLength": 3,
+"maxLength": 300
+},
+"usage_source_type": {
+"type": "string",
+"enum": [
+"ai_output",
+"agent_to_agent_message",
+"communication_event",
+"document",
+"article",
+"blog_post",
+"social_post",
+"repository",
+"specification",
+"schema",
+"dataset_reference",
+"model_behavior_observation",
+"conversation_excerpt",
+"other"
+]
+},
+"title": {
+"type": "string",
+"maxLength": 300
+},
+"public_url": {
+"type": "string",
+"format": "uri"
+},
+"observed_at": {
+"type": "string",
+"format": "date-time"
+},
+"content_summary": {
+"type": "string",
+"description": "Short summary of the observed usage context. Avoid including private or excessive raw content.",
+"maxLength": 3000
+},
+"evidence_references": {
+"type": "array",
+"description": "Optional references to evidence associated with the detected usage.",
+"items": {
+"type": "string",
+"maxLength": 300
+}
+}
+}
+},
+"usage_assessment": {
+"type": "object",
+"description": "Assessment of the possible usage relationship. This is not proof and must remain reviewable.",
+"additionalProperties": false,
+"required": [
+"usage_types",
+"confidence_level",
+"assessment_summary"
+],
+"properties": {
+"usage_types": {
+"type": "array",
+"description": "Detected or suspected usage types.",
+"minItems": 1,
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"reference",
+"summary",
+"quotation",
+"transformation",
+"derivative_generation",
+"conceptual_reuse",
+"prompt_pattern_reuse",
+"model_behavior_similarity",
+"agent_to_agent_transmission",
+"unknown"
+]
+}
+},
+"confidence_level": {
+"type": "string",
+"description": "Confidence level of the usage assessment. Confidence is not proof.",
+"enum": [
+"unknown",
+"low",
+"medium",
+"high",
+"requires_human_review"
+]
+},
+"assessment_summary": {
+"type": "string",
+"description": "Human-readable summary of why possible usage was detected.",
+"minLength": 1,
+"maxLength": 3000
+},
+"similarity_factors": {
+"type": "array",
+"description": "Optional factors that contributed to the detection. These factors must not be treated as proof by themselves.",
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"terminology_overlap",
+"structure_overlap",
+"prompt_pattern_overlap",
+"conceptual_similarity",
+"argument_structure_similarity",
+"style_similarity",
+"metadata_reference",
+"direct_reference",
+"citation_reference",
+"communication_chain_reference",
+"other"
+]
+}
+},
+"limitations": {
+"type": "string",
+"description": "Known limitations, uncertainties, or reasons this event requires review.",
+"maxLength": 2000
+}
+}
+},
+"value_event_candidate": {
+"type": "object",
+"description": "Optional value event candidate created from the usage detection event.",
+"additionalProperties": false,
+"properties": {
+"candidate_id": {
+"type": "string",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 180
+},
+"candidate_status": {
+"type": "string",
+"enum": [
+"draft",
+"candidate",
+"under_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"archived"
+]
+},
+"value_graph_node_reference": {
+"type": "string",
+"maxLength": 220
+},
+"policy_review_required": {
+"type": "boolean",
+"const": true
+}
+}
+},
+"route_candidates": {
+"type": "object",
+"description": "Optional route candidates derived from this usage detection event.",
+"additionalProperties": false,
+"properties": {
+"attribution_route_candidate": {
+"type": "string",
+"maxLength": 220
+},
+"claim_route_candidate": {
+"type": "string",
+"maxLength": 220
+},
+"return_route_candidate": {
+"type": "string",
+"maxLength": 220
+}
+}
+},
+"review_policy": {
+"type": "object",
+"description": "Review requirements for this usage detection event.",
+"additionalProperties": false,
+"required": [
+"human_review_required",
+"review_required_for"
+],
+"properties": {
+"human_review_required": {
+"type": "boolean",
+"const": true
+},
+"review_required_for": {
+"type": "array",
+"minItems": 1,
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"usage_interpretation",
+"ownership_interpretation",
+"attribution_assessment",
+"claim_route_creation",
+"compensation_assessment",
+"public_disclosure",
+"external_sharing",
+"governance_action",
+"escalation"
+]
+}
+},
+"default_review_status": {
+"type": "string",
+"enum": [
+"unreviewed",
+"under_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"escalated",
+"archived",
+"resolved"
+],
+"default": "unreviewed"
+}
+}
+},
+"boundary_policy": {
+"type": "object",
+"description": "Boundary rules for interpreting this usage detection event.",
+"additionalProperties": false,
+"required": [
+"not_ownership_proof",
+"not_infringement_proof",
+"not_compensation_proof",
+"not_claim_validity_proof",
+"similarity_is_not_proof",
+"requires_human_review"
+],
+"properties": {
+"not_ownership_proof": {
+"type": "boolean",
+"const": true
+},
+"not_infringement_proof": {
+"type": "boolean",
+"const": true
+},
+"not_compensation_proof": {
+"type": "boolean",
+"const": true
+},
+"not_claim_validity_proof": {
+"type": "boolean",
+"const": true
+},
+"similarity_is_not_proof": {
+"type": "boolean",
+"const": true
+},
+"requires_human_review": {
+"type": "boolean",
+"const": true
+},
+"no_automatic_accusation": {
+"type": "boolean",
+"const": true
+},
+"no_automatic_enforcement": {
+"type": "boolean",
+"const": true
+}
+}
+},
+"privacy_policy": {
+"type": "object",
+"description": "Privacy constraints for this usage detection event.",
+"additionalProperties": false,
+"properties": {
+"minimal_disclosure": {
+"type": "boolean",
+"default": true
+},
+"private_trace_data_included": {
+"type": "boolean",
+"description": "Whether private trace data is included in the event. This should normally be false.",
+"default": false
+},
+"public_summary_allowed": {
+"type": "boolean",
+"default": true
+},
+"external_sharing_requires_review": {
+"type": "boolean",
+"default": true
+}
+}
+},
+"governance": {
+"type": "object",
+"description": "Governance state for this usage detection event.",
+"additionalProperties": false,
+"properties": {
+"governance_status": {
+"type": "string",
+"enum": [
+"none",
+"review_requested",
+"under_review",
+"disputed",
+"escalated",
+"resolved",
+"archived"
+],
+"default": "none"
+},
+"reviewer_notes": {
+"type": "string",
+"maxLength": 3000
+},
+"governance_actions": {
+"type": "array",
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"review_request",
+"dispute_request",
+"correction_request",
+"attribution_review",
+"claim_review",
+"return_route_review",
+"governance_escalation",
+"archive"
+]
+}
+}
+}
+},
+"external_references": {
+"type": "object",
+"description": "Optional references to related specs, documents, repositories, or systems.",
+"additionalProperties": false,
+"properties": {
+"royalty_os_version": {
+"type": "string",
+"default": "v0.5.0-draft"
+},
+"related_specs": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 256
+}
+},
+"related_docs": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 256
+}
+},
+"related_trace": {
+"type": "string",
+"maxLength": 220
+},
+"related_agent": {
+"type": "string",
+"maxLength": 220
+}
+}
+},
+"notes": {
+"type": "string",
+"description": "Optional notes about this usage detection event.",
+"maxLength": 3000
+},
+"created_at": {
+"type": "string",
+"description": "Creation timestamp in date-time format.",
+"format": "date-time"
+},
+"updated_at": {
+"type": "string",
+"description": "Last update timestamp in date-time format.",
+"format": "date-time"
+}
+}
+}
