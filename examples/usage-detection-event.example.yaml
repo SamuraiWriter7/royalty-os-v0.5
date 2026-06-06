@@ -42,7 +42,7 @@ usage_assessment:
   usage_types:
     - "summary"
     - "conceptual_reuse"
-    - "conceptual_reuse"   # formerly terminology_overlap
+    - "prompt_pattern_reuse"        # ← 重複回避 & 意味的に最も近い
     - "model_behavior_similarity"
   confidence_level: "requires_human_review"
   assessment_summary: >
@@ -53,9 +53,8 @@ usage_assessment:
     This assessment is not proof and requires human review before any
     attribution, claim, compensation, or governance action.
   similarity_factors:
-    - "conceptual_similarity"   # formerly terminology_overlap
     - "structure_overlap"
-    - "conceptual_similarity"
+    - "conceptual_similarity"       # ← 重複排除
   limitations: >
     The detected similarity may result from common terminology, parallel
     reasoning, public discourse, or independent formulation. This event
