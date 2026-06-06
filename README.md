@@ -5,7 +5,7 @@
 
 Royalty OS v0.5 extends the Dynamic Value Relationship OS of v0.4 by introducing a **Personal AI Agent Royalty Layer**.
 
-This version defines how personal AI agents may assist individuals in managing intellectual trace fingerprints, detecting AI-mediated usage, routing attribution or claim relationships, and preparing human-reviewed value return pathways.
+This version defines how personal AI agents may assist individuals in managing intellectual trace fingerprints, detecting AI-mediated usage, routing attribution or claim relationships, preparing human-reviewed value return pathways, and connecting those routes to communication-based value systems.
 
 Royalty OS v0.5 does **not** automatically determine ownership, calculate compensation, execute payments, or enforce legal claims.
 
@@ -44,6 +44,7 @@ A personal AI agent may help an individual:
 * support human review
 * preserve representative event logs
 * connect the full agent-mediated value workflow
+* bridge personal representation with communication-based value events
 
 The personal AI agent is not the owner of value.
 
@@ -90,6 +91,9 @@ Royalty OS v0.5 builds on that foundation by adding:
 * Human-Reviewed Value Return
 * Representative Event Log
 * Agent-Mediated Value Flow
+* Communication Royalty OS Bridge
+* Privacy and Review Model
+* Boundary Principles
 
 The evolution can be summarized as:
 
@@ -149,6 +153,8 @@ Personal AI Agent Layer
 Trace Management Layer
 ↓
 Agent-Mediated Usage Detection Layer
+↓
+Communication Royalty Bridge Layer
 ↓
 Value Event Layer
 ↓
@@ -435,6 +441,83 @@ Agent-Mediated Value Routing
 
 ---
 
+## Communication Royalty OS Bridge
+
+The Communication Royalty OS Bridge defines how Royalty OS v0.5 may connect with Communication Royalty OS.
+
+Royalty OS v0.5 focuses on personal AI representation.
+
+Communication Royalty OS focuses on value generated through AI-to-AI communication.
+
+The bridge connects:
+
+```text
+Communication Event
+↓
+Usage Detection Event
+↓
+Value Event Candidate
+↓
+Attribution Route
+↓
+Claim Route
+↓
+Return Route
+↓
+Representative Event
+↓
+Agent-Mediated Value Flow
+```
+
+The bridge does not execute payment.
+
+The bridge does not determine ownership.
+
+The bridge does not enforce claims.
+
+It defines a reviewable connection path between personal representation and communication-based value circulation.
+
+In short:
+
+```text
+Communication Royalty OS Bridge
+= reviewable connection between AI-to-AI communication value and personal AI agent representation
+```
+
+---
+
+## Privacy and Review Model
+
+The Privacy and Review Model defines how Royalty OS v0.5 handles personal trace data, evidence references, wallet references, representative events, and review workflows.
+
+Core principle:
+
+```text
+Reference instead of exposure.
+Summary instead of raw disclosure.
+Review before external action.
+```
+
+The model protects against:
+
+* overexposure of personal traces
+* leakage of private evidence
+* storage of sensitive wallet credentials
+* public accusation without review
+* external sharing without authorization
+* payment or settlement preparation without human review
+* automatic escalation from detection to claim
+* automatic escalation from claim to enforcement
+
+In short:
+
+```text
+Privacy and Review Model
+= the layer that protects individuals while allowing agent-mediated value relationships to be reviewed responsibly
+```
+
+---
+
 ## Boundary Principles
 
 Royalty OS v0.5 must preserve strict boundaries.
@@ -473,6 +556,16 @@ The boundary is not a weakness.
 
 It is what makes the system responsible.
 
+Core boundary statement:
+
+```text
+Structure, do not decide.
+Route, do not enforce.
+Prepare, do not execute.
+Log, do not conclude.
+Review before action.
+```
+
 ---
 
 ## Repository Structure
@@ -484,7 +577,10 @@ royalty-os-v0.5/
 ├── docs/
 │   ├── v0.5-structural-diff.md
 │   ├── personal-ai-agent-royalty-os.md
-│   └── agent-mediated-value-routing.md
+│   ├── agent-mediated-value-routing.md
+│   ├── boundary-principles.md
+│   ├── communication-royalty-os-bridge.md
+│   └── privacy-and-review-model.md
 ├── specs/
 │   └── royalty-os-v0.5-draft.yaml
 ├── schemas/
@@ -539,6 +635,47 @@ Defines the routing logic behind Royalty OS v0.5.
 It explains how personal AI agents move from trace management to usage detection, attribution routing, claim preparation, return route preparation, representative event logging, and integrated value flow.
 
 This document is the human-readable design guide for the full v0.5 workflow.
+
+---
+
+### `docs/boundary-principles.md`
+
+Defines the safety and responsibility boundaries of Royalty OS v0.5.
+
+It clarifies that:
+
+* detection is not proof
+* similarity is not infringement
+* trace fingerprint is not ownership proof
+* attribution is not payment
+* claim route is not enforcement
+* return route is not payment execution
+* representative event is not legal proof
+* agent-mediated value flow is not settlement
+* personal AI agent is representative, not owner
+* human review is required before external action
+
+This document is the safety layer that keeps the Personal AI Agent Royalty OS responsible, reviewable, and governable.
+
+---
+
+### `docs/communication-royalty-os-bridge.md`
+
+Defines how Royalty OS v0.5 connects with Communication Royalty OS.
+
+It explains how AI-to-AI communication events may connect to usage detection events, value event candidates, attribution routes, claim routes, return routes, representative event logs, and integrated value flows.
+
+This document bridges personal representation and communication-based value circulation.
+
+---
+
+### `docs/privacy-and-review-model.md`
+
+Defines the privacy and review model for Royalty OS v0.5.
+
+It explains how personal trace data, evidence references, wallet references, review states, public disclosure, external sharing, and representative events should be handled.
+
+This document protects individuals while allowing agent-mediated value relationships to be reviewed responsibly.
 
 ---
 
@@ -727,15 +864,18 @@ GitHub Actions also validates examples automatically through:
 2. docs/v0.5-structural-diff.md
 3. docs/personal-ai-agent-royalty-os.md
 4. docs/agent-mediated-value-routing.md
-5. specs/royalty-os-v0.5-draft.yaml
-6. schemas/personal-agent.schema.json
-7. schemas/trace-fingerprint.schema.json
-8. schemas/usage-detection-event.schema.json
-9. schemas/attribution-route.schema.json
-10. schemas/claim-route.schema.json
-11. schemas/return-route.schema.json
-12. schemas/representative-event.schema.json
-13. schemas/agent-mediated-value-flow.schema.json
+5. docs/boundary-principles.md
+6. docs/communication-royalty-os-bridge.md
+7. docs/privacy-and-review-model.md
+8. specs/royalty-os-v0.5-draft.yaml
+9. schemas/personal-agent.schema.json
+10. schemas/trace-fingerprint.schema.json
+11. schemas/usage-detection-event.schema.json
+12. schemas/attribution-route.schema.json
+13. schemas/claim-route.schema.json
+14. schemas/return-route.schema.json
+15. schemas/representative-event.schema.json
+16. schemas/agent-mediated-value-flow.schema.json
 ```
 
 ---
@@ -751,6 +891,9 @@ Royalty OS v0.5 does not provide:
 * automatic royalty calculation
 * automatic infringement detection
 * automatic platform compliance enforcement
+* automatic settlement
+* automatic accusation
+* automatic public claim generation
 
 Royalty OS v0.5 is not a legal engine.
 
@@ -758,7 +901,7 @@ Royalty OS v0.5 is not a payment processor.
 
 Royalty OS v0.5 is not a copyright enforcement bot.
 
-It is a structural layer for responsible agent-mediated trace management, attribution routing, claim preparation, value return review, and auditability.
+It is a structural layer for responsible agent-mediated trace management, attribution routing, claim preparation, value return review, privacy protection, and auditability.
 
 ---
 
@@ -782,6 +925,9 @@ The current draft includes:
 * validation script
 * GitHub Actions workflow
 * integrated agent-mediated value flow
+* boundary principles
+* communication bridge
+* privacy and review model
 
 ---
 
@@ -799,6 +945,8 @@ It allows individuals to appear inside value networks through:
 * human-reviewed value return
 * audit logging
 * integrated value flow
+* privacy protection
+* communication value bridging
 
 The personal AI agent is not a value owner.
 
@@ -820,5 +968,15 @@ And:
 ```text
 Agent-Mediated Value Routing
 = responsible routing infrastructure for personal AI agent value representation
+```
+
+The strongest boundary of Royalty OS v0.5 is:
+
+```text
+Structure, do not decide.
+Route, do not enforce.
+Prepare, do not execute.
+Log, do not conclude.
+Review before action.
 ```
 
