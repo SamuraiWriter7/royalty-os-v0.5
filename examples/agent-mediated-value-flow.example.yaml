@@ -1,0 +1,311 @@
+flow_id: "flow:agent-mediated-value:sample-001"
+schema_version: "v0.5.0-draft"
+flow_type: "agent_mediated_value_flow"
+status: "candidate"
+
+title: "Sample Agent-Mediated Value Flow"
+description: >
+This example describes an end-to-end agent-mediated value flow in
+Royalty OS v0.5. It connects a personal AI agent, personal trace
+fingerprint, usage detection event, attribution route, claim route,
+return route, and representative event log into a single reviewable
+workflow. This flow is for structural review only and does not prove
+ownership, infringement, compensation, payment obligation, or claim
+validity.
+
+core_principle: >
+Personal AI agents assist with trace management and value routing.
+They do not automatically decide ownership, compensation, payment,
+or enforcement.
+
+participants:
+represented_individual:
+individual_id: "individual:creator:sample-001"
+individual_type: "creator"
+display_name: "Sample Creator"
+
+personal_ai_agent:
+agent_id: "agent:personal:sample-001"
+agent_name: "Sample Personal Royalty Agent"
+agent_record_reference: "examples/personal-agent.example.yaml"
+role_in_flow: "personal_representative_agent"
+
+flow_records:
+personal_agent:
+record_id: "agent:personal:sample-001"
+record_type: "personal_agent"
+record_reference: "examples/personal-agent.example.yaml"
+purpose: >
+Defines the personal AI agent that represents the sample creator
+for trace management, usage detection, attribution routing, claim
+route preparation, return route preparation, and representative
+event logging.
+
+trace_fingerprint:
+record_id: "trace:personal:sample-001"
+record_type: "personal_trace_fingerprint"
+record_reference: "examples/trace-fingerprint.example.yaml"
+purpose: >
+Defines the intellectual trace fingerprint associated with the
+sample creator. It includes question structures, conceptual
+frameworks, terminology, and boundary principles.
+
+usage_detection_event:
+record_id: "usage:event:sample-001"
+record_type: "agent_mediated_usage_detection_event"
+record_reference: "examples/usage-detection-event.example.yaml"
+purpose: >
+Records possible AI-mediated usage of the registered personal
+trace fingerprint. This event is a reviewable candidate and does
+not automatically create a claim.
+
+attribution_route:
+record_id: "attribution:route:sample-001"
+record_type: "attribution_route"
+record_reference: "examples/attribution-route.example.yaml"
+purpose: >
+Connects the detected usage event back to the personal trace
+fingerprint as a reviewable attribution route. It is a traceability
+structure, not a payment route.
+
+claim_route:
+record_id: "claim:route:sample-001"
+record_type: "claim_route"
+record_reference: "examples/claim-route.example.yaml"
+purpose: >
+Structures a reviewable request for usage review, attribution
+review, royalty review, value return review, and possible governance
+escalation. It does not enforce a claim.
+
+return_route:
+record_id: "return:route:sample-001"
+record_type: "return_route"
+record_reference: "examples/return-route.example.yaml"
+purpose: >
+Prepares a human-reviewed pathway for attribution, citation,
+acknowledgment, royalty intent, micro-royalty routing, wallet
+reference, and external settlement review. It does not execute
+payment.
+
+representative_event:
+record_id: "representative:event:sample-001"
+record_type: "representative_event"
+record_reference: "examples/representative-event.example.yaml"
+purpose: >
+Records the personal AI agent's preparation of the return route
+candidate for auditability, transparency, and governance review.
+
+flow_steps:
+
+* step: 1
+  name: "Personal AI agent is defined"
+  record_reference: "examples/personal-agent.example.yaml"
+  input: "represented individual"
+  output: "personal AI representative"
+  summary: >
+  A personal AI agent is defined as a representative interface for
+  the sample creator. The agent may assist with trace management,
+  usage detection, attribution routing, claim route preparation,
+  return route preparation, and representative event logging.
+  boundary: >
+  The agent is not an owner, judge, payment executor, legal enforcer,
+  or automatic infringement accuser.
+
+* step: 2
+  name: "Personal trace fingerprint is registered"
+  record_reference: "examples/trace-fingerprint.example.yaml"
+  input: "creator's intellectual trace"
+  output: "reviewable personal trace fingerprint"
+  summary: >
+  The creator's intellectual trace is structured as a personal trace
+  fingerprint. It includes question structures, conceptual frameworks,
+  terminology, and boundary principles.
+  boundary: >
+  The trace fingerprint is a reviewable structure and is not proof
+  of ownership, infringement, compensation, or claim validity.
+
+* step: 3
+  name: "Possible usage is detected"
+  record_reference: "examples/usage-detection-event.example.yaml"
+  input: "detected AI output or communication context"
+  output: "usage detection event candidate"
+  summary: >
+  The personal AI agent detects possible overlap between the registered
+  personal trace fingerprint and an observed AI output. The event is
+  recorded as a usage detection candidate.
+  boundary: >
+  Usage detection does not automatically create a claim, accusation,
+  compensation assessment, or enforcement action.
+
+* step: 4
+  name: "Attribution route is prepared"
+  record_reference: "examples/attribution-route.example.yaml"
+  input: "usage detection event candidate"
+  output: "reviewable attribution route"
+  summary: >
+  The usage detection event is connected back to the personal trace
+  fingerprint through an attribution route. The route may support
+  citation, acknowledgment, or traceability review.
+  boundary: >
+  Attribution is not payment. It does not prove ownership, infringement,
+  compensation, or claim validity.
+
+* step: 5
+  name: "Claim route is prepared"
+  record_reference: "examples/claim-route.example.yaml"
+  input: "attribution route candidate"
+  output: "reviewable claim route"
+  summary: >
+  The personal AI agent prepares a claim route requesting usage review,
+  attribution review, royalty review, value return review, and possible
+  governance review.
+  boundary: >
+  A claim route is not enforcement. It does not automatically create
+  legal, financial, or platform obligations.
+
+* step: 6
+  name: "Return route is prepared"
+  record_reference: "examples/return-route.example.yaml"
+  input: "claim route candidate"
+  output: "human-reviewed return route candidate"
+  summary: >
+  A return route is prepared for possible attribution, citation,
+  acknowledgment, royalty intent, micro-royalty routing, wallet
+  reference, and external settlement review.
+  boundary: >
+  A return route is not payment execution. Any payment, settlement,
+  compensation, or external action must occur outside Royalty OS v0.5
+  after human or governance review.
+
+* step: 7
+  name: "Representative event is logged"
+  record_reference: "examples/representative-event.example.yaml"
+  input: "return route preparation action"
+  output: "representative event log entry"
+  summary: >
+  The personal AI agent records that it prepared a return route
+  candidate on behalf of the represented creator. This creates an
+  audit trail for the agent-mediated workflow.
+  boundary: >
+  A representative event is not proof and does not execute action by
+  itself. It records agent-mediated activity for transparency and
+  auditability.
+
+value_flow_summary:
+sequence:
+- "Personal AI Agent"
+- "Personal Trace Fingerprint"
+- "Agent-Mediated Usage Detection Event"
+- "Attribution Route"
+- "Claim Route"
+- "Return Route"
+- "Representative Event Log"
+
+meaning:
+- "Who represents the individual"
+- "What intellectual trace is protected"
+- "What possible usage was detected"
+- "How the usage may relate back to the trace"
+- "What review or claim pathway is requested"
+- "How value return may be prepared after review"
+- "How the representative action is logged for auditability"
+
+review_model:
+human_review_required: true
+review_required_for:
+- "usage_interpretation"
+- "attribution_interpretation"
+- "claim_interpretation"
+- "return_interpretation"
+- "ownership_interpretation"
+- "compensation_assessment"
+- "payment_execution"
+- "wallet_reference"
+- "public_disclosure"
+- "external_sharing"
+- "external_process"
+- "governance_action"
+- "escalation"
+default_review_status: "unreviewed"
+
+boundary_policy:
+detection_is_not_proof: true
+attribution_is_not_payment: true
+claim_route_is_not_enforcement: true
+return_route_is_not_execution: true
+representative_event_is_not_execution: true
+similarity_is_not_proof: true
+no_automatic_ownership: true
+no_automatic_compensation: true
+no_automatic_payment: true
+no_automatic_enforcement: true
+no_automatic_accusation: true
+requires_human_review: true
+
+privacy_policy:
+minimal_disclosure: true
+private_trace_data_included: false
+private_evidence_included: false
+sensitive_wallet_credentials_included: false
+public_summary_allowed: true
+external_sharing_requires_review: true
+
+governance:
+governance_status: "review_requested"
+governance_actions:
+- "review_request"
+- "attribution_review"
+- "claim_review"
+- "return_route_review"
+- "compensation_review"
+- "external_process_review"
+governance_notes: >
+This flow is a reviewable end-to-end example of agent-mediated value
+routing. It should be reviewed as a structural workflow and must not
+be interpreted as automatic proof, payment, enforcement, or legal
+obligation.
+
+audit:
+audit_required: true
+audit_status: "pending"
+representative_event_reference: "representative:event:sample-001"
+audit_summary: >
+The representative event log records the agent-mediated preparation
+of the return route candidate. The audit trail links all major records
+in the v0.5 flow.
+
+external_references:
+royalty_os_version: "v0.5.0-draft"
+related_specs:
+- "specs/royalty-os-v0.5-draft.yaml"
+related_docs:
+- "docs/v0.5-structural-diff.md"
+- "docs/personal-ai-agent-royalty-os.md"
+related_schemas:
+- "schemas/personal-agent.schema.json"
+- "schemas/trace-fingerprint.schema.json"
+- "schemas/usage-detection-event.schema.json"
+- "schemas/attribution-route.schema.json"
+- "schemas/claim-route.schema.json"
+- "schemas/return-route.schema.json"
+- "schemas/representative-event.schema.json"
+related_examples:
+- "examples/personal-agent.example.yaml"
+- "examples/trace-fingerprint.example.yaml"
+- "examples/usage-detection-event.example.yaml"
+- "examples/attribution-route.example.yaml"
+- "examples/claim-route.example.yaml"
+- "examples/return-route.example.yaml"
+- "examples/representative-event.example.yaml"
+
+notes: >
+This integrated example demonstrates the full Royalty OS v0.5
+agent-mediated value flow. It shows how a personal AI agent may represent
+an individual, manage a trace fingerprint, detect possible usage, prepare
+attribution and claim routes, prepare a return route, and log the action
+through a representative event. The flow is review-based and does not
+automatically determine ownership, compensation, payment, enforcement,
+or claim validity.
+
+created_at: "2026-06-06T00:00:00Z"
+updated_at: "2026-06-06T00:00:00Z"
