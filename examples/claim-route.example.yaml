@@ -1,0 +1,196 @@
+claim_route_id: "claim:route:sample-001"
+schema_version: "v0.5.0-draft"
+route_type: "claim_route"
+status: "candidate"
+
+claimant_reference:
+claimant_id: "individual:creator:sample-001"
+claimant_type: "creator"
+display_name: "Sample Creator"
+
+representative_agent:
+agent_id: "agent:personal:sample-001"
+agent_role: "claim_route_assistant"
+agent_record_reference: "examples/personal-agent.example.yaml"
+
+source_trace_reference:
+trace_id: "trace:personal:sample-001"
+trace_type: "mixed_trace_fingerprint"
+trace_record_reference: "examples/trace-fingerprint.example.yaml"
+trace_element_ids:
+- "element:question-structure-001"
+- "element:conceptual-framework-001"
+- "element:terminology-001"
+- "element:boundary-principle-001"
+
+usage_detection_event_reference:
+event_id: "usage:event:sample-001"
+event_record_reference: "examples/usage-detection-event.example.yaml"
+event_status: "candidate"
+
+attribution_route_reference:
+attribution_route_id: "attribution:route:sample-001"
+attribution_route_record_reference: "examples/attribution-route.example.yaml"
+attribution_route_status: "candidate"
+
+detected_usage_reference:
+usage_reference_id: "usage:ai-output:sample-001"
+usage_source_type: "ai_output"
+title: "Sample AI Output Referencing Personal Agent Royalty Concepts"
+public_url: "https://example.com/sample-detected-ai-output"
+observed_at: "2026-06-06T00:00:00Z"
+
+claim_request:
+claim_types:
+- "attribution_request"
+- "usage_review_request"
+- "royalty_review_request"
+- "value_return_request"
+requested_actions:
+- "review_usage"
+- "review_attribution"
+- "add_citation"
+- "prepare_royalty_review"
+- "prepare_value_return_review"
+request_summary: >
+This claim route requests human and governance review of a possible
+relationship between the registered personal trace fingerprint and the
+detected AI output. The requested actions include usage review,
+attribution review, possible citation, royalty review preparation, and
+value return review preparation. This record does not assert automatic
+ownership, infringement, compensation, or claim validity.
+requested_by: "individual:creator:sample-001"
+
+claim_assessment:
+confidence_level: "requires_human_review"
+assessment_summary: >
+The claim route is prepared because a usage detection event and an
+attribution route candidate both indicate possible overlap between the
+detected AI output and the registered personal trace fingerprint.
+The overlap appears to involve terminology, conceptual structure, and
+agent-mediated value routing concepts. This assessment is reviewable
+only and must not be treated as proof.
+supporting_factors:
+- "usage_detection_event"
+- "attribution_route"
+- "terminology_overlap"
+- "structure_overlap"
+- "conceptual_similarity"
+limitations: >
+The detected relationship may reflect common terminology, independent
+reasoning, public discourse, or parallel conceptual development.
+Human review is required before attribution, public disclosure,
+compensation assessment, external process preparation, or governance
+escalation.
+
+claim_action:
+action_status: "candidate"
+external_process_allowed: false
+external_process_reference: ""
+action_notes: >
+This route remains a candidate. It may be prepared for an external
+process only after human or governance review. No automatic payment,
+enforcement, legal claim, or public accusation is triggered by this
+record.
+
+evidence:
+evidence_summary: >
+The claim route is supported by the related usage detection event,
+attribution route, registered trace fingerprint, and comparison
+references. These materials are review aids only.
+evidence_references:
+- "usage:event:sample-001"
+- "attribution:route:sample-001"
+- "trace:personal:sample-001"
+- "evidence:comparison:sample-001"
+comparison_reference: "evidence:comparison:sample-001"
+private_evidence_included: false
+
+value_graph_reference:
+value_graph_node_id: "value:graph:node:sample-001"
+value_graph_edge_id: "value:graph:edge:sample-001"
+value_event_candidate_id: "value:event:candidate:sample-001"
+
+return_route_reference:
+return_route_id: "return:route:sample-001"
+return_route_status: "candidate"
+return_route_record_reference: "examples/return-route.example.yaml"
+
+review_policy:
+human_review_required: true
+review_required_for:
+- "claim_interpretation"
+- "ownership_interpretation"
+- "attribution_interpretation"
+- "usage_interpretation"
+- "compensation_assessment"
+- "payment_execution"
+- "public_disclosure"
+- "external_sharing"
+- "external_process"
+- "governance_action"
+- "escalation"
+default_review_status: "unreviewed"
+
+boundary_policy:
+not_ownership_proof: true
+not_infringement_proof: true
+not_compensation_proof: true
+not_claim_validity_proof: true
+claim_route_is_not_enforcement: true
+similarity_is_not_proof: true
+requires_human_review: true
+no_automatic_accusation: true
+no_automatic_enforcement: true
+no_automatic_payment: true
+
+privacy_policy:
+minimal_disclosure: true
+private_trace_data_included: false
+private_evidence_included: false
+public_summary_allowed: true
+external_sharing_requires_review: true
+
+governance:
+governance_status: "review_requested"
+reviewer_notes: >
+This claim route is prepared for review only. It should not be treated
+as proof of ownership, infringement, compensation, or claim validity.
+Review should determine whether attribution, correction, dispute
+handling, royalty review, value return review, archival, rejection,
+or escalation is appropriate.
+governance_actions:
+- "review_request"
+- "attribution_review"
+- "claim_review"
+- "return_route_review"
+
+related_routes:
+attribution_routes:
+- "attribution:route:sample-001"
+return_routes:
+- "return:route:sample-001"
+representative_events:
+- "representative:event:sample-001"
+
+external_references:
+royalty_os_version: "v0.5.0-draft"
+related_specs:
+- "specs/royalty-os-v0.5-draft.yaml"
+related_docs:
+- "docs/v0.5-structural-diff.md"
+- "docs/personal-ai-agent-royalty-os.md"
+related_trace: "trace:personal:sample-001"
+related_usage_event: "usage:event:sample-001"
+related_attribution_route: "attribution:route:sample-001"
+related_agent: "agent:personal:sample-001"
+
+notes: >
+This example defines a claim route prepared by a personal AI agent on
+behalf of a sample creator. It structures a reviewable request for usage
+review, attribution review, royalty review, and value return review.
+It does not prove ownership, infringement, compensation, or claim
+validity, and it does not execute payment, enforcement, or legal action.
+
+created_at: "2026-06-06T00:00:00Z"
+updated_at: "2026-06-06T00:00:00Z"
