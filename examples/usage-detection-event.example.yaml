@@ -4,132 +4,132 @@ event_type: "agent_mediated_usage_detection"
 status: "candidate"
 
 detecting_agent:
-agent_id: "agent:personal:sample-001"
-agent_role: "usage_detection_assistant"
-agent_record_reference: "examples/personal-agent.example.yaml"
+  agent_id: "agent:personal:sample-001"
+  agent_role: "usage_detection_assistant"
+  agent_record_reference: "examples/personal-agent.example.yaml"
 
 represented_individual:
-individual_id: "individual:creator:sample-001"
-display_name: "Sample Creator"
+  individual_id: "individual:creator:sample-001"
+  display_name: "Sample Creator"
 
 source_trace_reference:
-trace_id: "trace:personal:sample-001"
-trace_type: "mixed_trace_fingerprint"
-trace_record_reference: "examples/trace-fingerprint.example.yaml"
-trace_element_ids:
-- "element:question-structure-001"
-- "element:conceptual-framework-001"
-- "element:terminology-001"
+  trace_id: "trace:personal:sample-001"
+  trace_type: "mixed_trace_fingerprint"
+  trace_record_reference: "examples/trace-fingerprint.example.yaml"
+  trace_element_ids:
+    - "element:question-structure-001"
+    - "element:conceptual-framework-001"
+    - "element:terminology-001"
 
 detected_usage_reference:
-usage_reference_id: "usage:ai-output:sample-001"
-usage_source_type: "ai_output"
-title: "Sample AI Output Referencing Personal Agent Royalty Concepts"
-public_url: "https://example.com/sample-detected-ai-output"
-observed_at: "2026-06-06T00:00:00Z"
-content_summary: >
-A sample AI-generated output appears to reuse or summarize concepts
-related to personal AI agents, intellectual trace fingerprints,
-agent-mediated usage detection, attribution routes, claim routes,
-and human-reviewed value return. This record is only a reviewable
-detection candidate and does not assert ownership, infringement,
-compensation, or claim validity.
-evidence_references:
-- "evidence:summary:sample-001"
-- "evidence:comparison:sample-001"
+  usage_reference_id: "usage:ai-output:sample-001"
+  usage_source_type: "ai_output"
+  title: "Sample AI Output Referencing Personal Agent Royalty Concepts"
+  public_url: "https://example.com/sample-detected-ai-output"
+  observed_at: "2026-06-06T00:00:00Z"
+  content_summary: >
+    A sample AI-generated output appears to reuse or summarize concepts
+    related to personal AI agents, intellectual trace fingerprints,
+    agent-mediated usage detection, attribution routes, claim routes,
+    and human-reviewed value return. This record is only a reviewable
+    detection candidate and does not assert ownership, infringement,
+    compensation, or claim validity.
+  evidence_references:
+    - "evidence:summary:sample-001"
+    - "evidence:comparison:sample-001"
 
 usage_assessment:
-usage_types:
-- "summary"
-- "conceptual_reuse"
-- "terminology_overlap"
-- "model_behavior_similarity"
-confidence_level: "requires_human_review"
-assessment_summary: >
-The detected output appears to contain overlapping terminology and
-structural concepts associated with the registered trace fingerprint.
-Similar phrases include Personal AI Agent, intellectual trace,
-attribution route, claim route, and human-reviewed value return.
-This assessment is not proof and requires human review before any
-attribution, claim, compensation, or governance action.
-similarity_factors:
-- "terminology_overlap"
-- "structure_overlap"
-- "conceptual_similarity"
-limitations: >
-The detected similarity may result from common terminology, parallel
-reasoning, public discourse, or independent formulation. This event
-should therefore remain a candidate until reviewed by a human or
-governance process.
+  usage_types:
+    - "summary"
+    - "conceptual_reuse"
+    - "terminology_overlap"
+    - "model_behavior_similarity"
+  confidence_level: "requires_human_review"
+  assessment_summary: >
+    The detected output appears to contain overlapping terminology and
+    structural concepts associated with the registered trace fingerprint.
+    Similar phrases include Personal AI Agent, intellectual trace,
+    attribution route, claim route, and human-reviewed value return.
+    This assessment is not proof and requires human review before any
+    attribution, claim, compensation, or governance action.
+  similarity_factors:
+    - "terminology_overlap"
+    - "structure_overlap"
+    - "conceptual_similarity"
+  limitations: >
+    The detected similarity may result from common terminology, parallel
+    reasoning, public discourse, or independent formulation. This event
+    should therefore remain a candidate until reviewed by a human or
+    governance process.
 
 value_event_candidate:
-candidate_id: "value:event:candidate:sample-001"
-candidate_status: "candidate"
-value_graph_node_reference: "value:graph:node:sample-001"
-policy_review_required: true
+  candidate_id: "value:event:candidate:sample-001"
+  candidate_status: "candidate"
+  value_graph_node_reference: "value:graph:node:sample-001"
+  policy_review_required: true
 
 route_candidates:
-attribution_route_candidate: "attribution:route:sample-001"
-claim_route_candidate: "claim:route:sample-001"
-return_route_candidate: "return:route:sample-001"
+  attribution_route_candidate: "attribution:route:sample-001"
+  claim_route_candidate: "claim:route:sample-001"
+  return_route_candidate: "return:route:sample-001"
 
 review_policy:
-human_review_required: true
-review_required_for:
-- "usage_interpretation"
-- "ownership_interpretation"
-- "attribution_assessment"
-- "claim_route_creation"
-- "compensation_assessment"
-- "public_disclosure"
-- "external_sharing"
-- "governance_action"
-- "escalation"
-default_review_status: "unreviewed"
+  human_review_required: true
+  review_required_for:
+    - "usage_interpretation"
+    - "ownership_interpretation"
+    - "attribution_assessment"
+    - "claim_route_creation"
+    - "compensation_assessment"
+    - "public_disclosure"
+    - "external_sharing"
+    - "governance_action"
+    - "escalation"
+  default_review_status: "unreviewed"
 
 boundary_policy:
-not_ownership_proof: true
-not_infringement_proof: true
-not_compensation_proof: true
-not_claim_validity_proof: true
-similarity_is_not_proof: true
-requires_human_review: true
-no_automatic_accusation: true
-no_automatic_enforcement: true
+  not_ownership_proof: true
+  not_infringement_proof: true
+  not_compensation_proof: true
+  not_claim_validity_proof: true
+  similarity_is_not_proof: true
+  requires_human_review: true
+  no_automatic_accusation: true
+  no_automatic_enforcement: true
 
 privacy_policy:
-minimal_disclosure: true
-private_trace_data_included: false
-public_summary_allowed: true
-external_sharing_requires_review: true
+  minimal_disclosure: true
+  private_trace_data_included: false
+  public_summary_allowed: true
+  external_sharing_requires_review: true
 
 governance:
-governance_status: "review_requested"
-reviewer_notes: >
-This sample event is prepared for review only. It should not be treated
-as proof of misuse, infringement, ownership, compensation, or claim
-validity.
-governance_actions:
-- "review_request"
-- "attribution_review"
-- "claim_review"
+  governance_status: "review_requested"
+  reviewer_notes: >
+    This sample event is prepared for review only. It should not be treated
+    as proof of misuse, infringement, ownership, compensation, or claim
+    validity.
+  governance_actions:
+    - "review_request"
+    - "attribution_review"
+    - "claim_review"
 
 external_references:
-royalty_os_version: "v0.5.0-draft"
-related_specs:
-- "specs/royalty-os-v0.5-draft.yaml"
-related_docs:
-- "docs/v0.5-structural-diff.md"
-- "docs/personal-ai-agent-royalty-os.md"
-related_trace: "trace:personal:sample-001"
-related_agent: "agent:personal:sample-001"
+  royalty_os_version: "v0.5.0-draft"
+  related_specs:
+    - "specs/royalty-os-v0.5-draft.yaml"
+  related_docs:
+    - "docs/v0.5-structural-diff.md"
+    - "docs/personal-ai-agent-royalty-os.md"
+  related_trace: "trace:personal:sample-001"
+  related_agent: "agent:personal:sample-001"
 
 notes: >
-This example records a possible AI-mediated usage event detected by a
-personal AI agent. The event connects a registered personal trace
-fingerprint to an observed AI output and prepares a value event candidate.
-It is designed for reviewable trace management only. It does not prove
-ownership, infringement, compensation, or claim validity.
+  This example records a possible AI-mediated usage event detected by a
+  personal AI agent. The event connects a registered personal trace
+  fingerprint to an observed AI output and prepares a value event candidate.
+  It is designed for reviewable trace management only. It does not prove
+  ownership, infringement, compensation, or claim validity.
 
 created_at: "2026-06-06T00:00:00Z"
 updated_at: "2026-06-06T00:00:00Z"
