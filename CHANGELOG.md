@@ -44,6 +44,31 @@ Versions marked as `draft` are conceptual and may change before stabilization.
     * Representative Event Logger
   * Adds privacy, governance, boundary, and non-goal sections.
 
+* Added `docs/agent-mediated-value-routing.md`.
+
+  * Defines the routing logic behind Royalty OS v0.5.
+  * Explains how personal AI agents move from trace management to usage detection, attribution routing, claim preparation, return route preparation, representative event logging, and integrated value flow.
+  * Provides the human-readable design guide for the full v0.5 workflow.
+  * Defines the route:
+
+    * Representation
+    * Trace
+    * Detection
+    * Attribution
+    * Claim
+    * Return
+    * Audit
+    * Flow
+  * Clarifies that:
+
+    * detection is not proof
+    * attribution is not payment
+    * a claim route is not enforcement
+    * a return route is not payment execution
+    * a representative event is not execution
+    * the integrated flow is not an automatic settlement engine
+  * Adds review, privacy, governance, boundary, non-goal, and relationship sections for the routing model.
+
 * Added `specs/royalty-os-v0.5-draft.yaml`.
 
   * Provides the initial conceptual specification for Royalty OS v0.5.
@@ -186,6 +211,78 @@ Versions marked as `draft` are conceptual and may change before stabilization.
   * Demonstrates a human-reviewed pathway for attribution, citation, acknowledgment, royalty intent, micro-royalty routing, wallet reference, and external settlement preparation.
   * Clarifies that the record does not execute payment, calculate compensation, enforce claims, or create automatic legal obligations.
 
+* Added `schemas/representative-event.schema.json`.
+
+  * Validates Representative Event records.
+  * Defines how actions performed by or through a personal AI agent are recorded for transparency and auditability.
+  * Supports representative event types including:
+
+    * trace registration
+    * trace update
+    * usage detection
+    * value event creation
+    * attribution route creation
+    * claim route creation
+    * return route preparation
+    * human review request
+    * governance escalation
+    * wallet reference attachment
+    * external process preparation
+    * record archival
+  * Clarifies that a representative event is not proof of ownership, infringement, compensation, payment obligation, or claim validity.
+  * Adds audit metadata, review context, related records, boundary policy, privacy policy, governance state, and external references.
+
+* Added `examples/representative-event.example.yaml`.
+
+  * Provides a sample representative event record.
+  * Demonstrates how a personal AI agent records the preparation of a return route candidate on behalf of a represented creator.
+  * Connects the event to:
+
+    * personal agent
+    * trace fingerprint
+    * usage detection event
+    * attribution route
+    * claim route
+    * return route
+    * wallet reference
+    * value graph node
+    * value graph edge
+  * Preserves the boundary that the event is for transparency, auditability, and governance review only.
+  * Clarifies that the event does not execute payment, enforce claims, determine ownership, or establish compensation.
+
+* Added `examples/agent-mediated-value-flow.example.yaml`.
+
+  * Provides an end-to-end integrated example of the Royalty OS v0.5 agent-mediated value flow.
+  * Connects the full workflow:
+
+    * Personal AI Agent
+    * Personal Trace Fingerprint
+    * Agent-Mediated Usage Detection Event
+    * Attribution Route
+    * Claim Route
+    * Return Route
+    * Representative Event Log
+  * Demonstrates how a personal AI agent may represent an individual, manage a trace fingerprint, detect possible usage, prepare attribution and claim routes, prepare a return route, and log the representative action.
+  * Clarifies that the flow is review-based and does not automatically determine ownership, compensation, payment, enforcement, or claim validity.
+
+* Added `schemas/agent-mediated-value-flow.schema.json`.
+
+  * Validates Agent-Mediated Value Flow records.
+  * Defines the integrated workflow structure connecting all major v0.5 records.
+  * Adds validation for:
+
+    * participants
+    * flow records
+    * flow steps
+    * value flow summary
+    * review model
+    * boundary policy
+    * privacy policy
+    * governance state
+    * audit metadata
+    * external references
+  * Clarifies that the integrated flow is a reviewable workflow, not an execution engine.
+
 * Added `scripts/validate_examples.py`.
 
   * Validates example YAML files against JSON Schema files.
@@ -199,12 +296,16 @@ Versions marked as `draft` are conceptual and may change before stabilization.
     * Attribution Route
     * Claim Route
     * Return Route
+    * Representative Event
+    * Agent-Mediated Value Flow
 
 * Added `.github/workflows/validate-examples.yml`.
 
   * Adds GitHub Actions validation for schemas, examples, and the validation script.
   * Runs on push, pull request, and manual workflow dispatch.
   * Installs Python dependencies and runs `python scripts/validate_examples.py`.
+
+### Changed
 
 * Updated `README.md`.
 
@@ -213,21 +314,45 @@ Versions marked as `draft` are conceptual and may change before stabilization.
   * Added relationship to Communication Royalty OS.
   * Added architecture overview.
   * Added core flow.
+  * Added Agent-Mediated Value Routing section.
   * Added repository structure.
   * Added key documents.
   * Added schema and example descriptions.
   * Added validation instructions.
   * Added recommended reading order.
   * Added non-goals and boundary principles.
+  * Added `docs/agent-mediated-value-routing.md` to Repository Structure, Key Documents, and Recommended Reading Order.
 
-### Core Principle Added
+* Updated `scripts/validate_examples.py`.
+
+  * Added `Attribution Route` to validation targets.
+  * Added `Claim Route` to validation targets.
+  * Added `Return Route` to validation targets.
+  * Added `Representative Event` to validation targets.
+  * Added `Agent-Mediated Value Flow` to validation targets.
+  * The validation flow now checks:
+
+    * Personal AI Agent
+    * Personal Trace Fingerprint
+    * Agent-Mediated Usage Detection Event
+    * Attribution Route
+    * Claim Route
+    * Return Route
+    * Representative Event
+    * Agent-Mediated Value Flow
+
+---
+
+## Core Principle
 
 Royalty OS v0.5 is based on the following principle:
 
 > Personal AI agents assist with trace management and value routing.
 > They do not automatically decide ownership, compensation, payment, or enforcement.
 
-### Structural Transition
+---
+
+## Structural Transition
 
 This version defines the transition as:
 
@@ -246,9 +371,11 @@ v0.4 = value relationship infrastructure
 v0.5 = personal representative infrastructure
 ```
 
-### Core Flow Added
+---
 
-This version defines the main v0.5 flow as:
+## Core Flow
+
+The main v0.5 flow is now:
 
 ```text
 Personal AI Agent
@@ -262,6 +389,10 @@ Attribution Route
 Claim Route
 ↓
 Return Route
+↓
+Representative Event Log
+↓
+Agent-Mediated Value Flow
 ```
 
 Meaning:
@@ -278,9 +409,69 @@ How the usage may relate back to the trace
 What review or claim pathway is requested
 ↓
 How value return may be prepared after review
+↓
+How the representative action is logged for auditability
+↓
+How the full agent-mediated value workflow is connected as one reviewable flow
 ```
 
-### Boundaries
+---
+
+## Agent-Mediated Value Routing
+
+Agent-Mediated Value Routing provides the routing logic behind Royalty OS v0.5.
+
+It connects:
+
+```text
+Representation
+↓
+Trace
+↓
+Detection
+↓
+Attribution
+↓
+Claim
+↓
+Return
+↓
+Audit
+↓
+Flow
+```
+
+It defines the responsible pathway through which a personal AI agent may help an individual move from intellectual trace management to human-reviewed value return preparation.
+
+In short:
+
+```text
+Agent-Mediated Value Routing
+= responsible routing infrastructure for personal AI agent value representation
+```
+
+---
+
+## Agent-Mediated Value Flow
+
+Agent-Mediated Value Flow provides the integrated workflow layer for Royalty OS v0.5.
+
+It connects all major v0.5 records into a single reviewable structure.
+
+In short:
+
+```text
+Agent-Mediated Value Flow
+= full reviewable workflow connecting all v0.5 records
+```
+
+This flow does not automatically determine ownership, calculate compensation, execute payment, enforce claims, or create legal obligations.
+
+It exists to support review, auditability, governance analysis, and structural understanding of the personal AI agent royalty workflow.
+
+---
+
+## Boundaries
 
 Royalty OS v0.5 explicitly does not provide:
 
@@ -298,10 +489,14 @@ It also clarifies:
 * attribution is not payment
 * a claim route is not enforcement
 * a return route is not payment execution
+* a representative event is not execution
+* an integrated flow is not a settlement engine
 * similarity is not proof
 * human review is required
 
-### Validation
+---
+
+## Validation
 
 The validation package currently checks:
 
@@ -312,6 +507,8 @@ Agent-Mediated Usage Detection Event
 Attribution Route
 Claim Route
 Return Route
+Representative Event
+Agent-Mediated Value Flow
 ```
 
 Validation can be run with:
@@ -327,17 +524,17 @@ GitHub Actions workflow:
 .github/workflows/validate-examples.yml
 ```
 
-### Planned Next Steps
+---
+
+## Planned Next Steps
 
 Planned next additions may include:
 
 ```text
-docs/agent-mediated-value-routing.md
 docs/boundary-principles.md
 docs/communication-royalty-os-bridge.md
-schemas/representative-event.schema.json
-examples/representative-event.example.yaml
-examples/agent-mediated-value-flow.example.yaml
+docs/privacy-and-review-model.md
+docs/governance-review-model.md
 ```
 
 ---
@@ -349,3 +546,5 @@ Royalty OS v0.5 remains a conceptual draft with an initial validation package.
 This release does not introduce automatic payment, ownership, compensation, or legal enforcement mechanisms.
 
 The current milestone establishes the first validated flow from personal AI representation to human-reviewed value return preparation.
+
+It also introduces a human-readable routing document that explains how the full v0.5 workflow should be understood, reviewed, and governed.
