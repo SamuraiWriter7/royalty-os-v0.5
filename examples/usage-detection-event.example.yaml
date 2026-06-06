@@ -42,7 +42,7 @@ usage_assessment:
   usage_types:
     - "summary"
     - "conceptual_reuse"
-    - "terminology_overlap"
+    - "conceptual_reuse"   # formerly terminology_overlap
     - "model_behavior_similarity"
   confidence_level: "requires_human_review"
   assessment_summary: >
@@ -53,7 +53,7 @@ usage_assessment:
     This assessment is not proof and requires human review before any
     attribution, claim, compensation, or governance action.
   similarity_factors:
-    - "terminology_overlap"
+    - "conceptual_similarity"   # formerly terminology_overlap
     - "structure_overlap"
     - "conceptual_similarity"
   limitations: >
