@@ -5,130 +5,129 @@ agent_type: "personal_royalty_agent"
 status: "draft"
 
 represented_individual:
-individual_id: "individual:creator:sample-001"
-display_name: "Sample Creator"
-representation_scope:
-- "trace_management"
-- "usage_detection"
-- "value_event_preparation"
-- "attribution_routing"
-- "claim_route_preparation"
-- "review_preparation"
-- "return_route_preparation"
-- "representative_event_logging"
+  individual_id: "individual:creator:sample-001"
+  display_name: "Sample Creator"
+  representation_scope:
+    - "trace_management"
+    - "usage_detection"
+    - "value_event_preparation"
+    - "attribution_routing"
+    - "claim_route_preparation"
+    - "review_preparation"
+    - "return_route_preparation"
+    - "representative_event_logging"
 
 allowed_roles:
-
-* "trace_manager"
-* "usage_detection_assistant"
-* "value_event_preparer"
-* "attribution_route_assistant"
-* "claim_route_assistant"
-* "review_preparation_assistant"
-* "return_route_assistant"
-* "representative_event_logger"
+  - "trace_manager"
+  - "usage_detection_assistant"
+  - "value_event_preparer"
+  - "attribution_route_assistant"
+  - "claim_route_assistant"
+  - "review_preparation_assistant"
+  - "return_route_assistant"
+  - "representative_event_logger"
 
 prohibited_roles:
-
-* "automatic_owner"
-* "automatic_judge"
-* "automatic_payment_executor"
-* "automatic_legal_enforcer"
-* "automatic_infringement_accuser"
-* "automatic_compensation_calculator"
-* "automatic_claim_enforcer"
+  - "automatic_owner"
+  - "automatic_judge"
+  - "automatic_payment_executor"
+  - "automatic_legal_enforcer"
+  - "automatic_infringement_accuser"
+  - "automatic_compensation_calculator"
+  - "automatic_claim_enforcer"
 
 trace_permissions:
-can_register_trace_references: true
-can_update_trace_references: true
-can_delete_trace_references: false
-can_generate_trace_fingerprints: true
-can_expose_private_trace_data: false
+  can_register_trace_references: true
+  can_update_trace_references: true
+  can_delete_trace_references: false
+  can_generate_trace_fingerprints: true
+  can_expose_private_trace_data: false
 
 usage_detection_permissions:
-can_detect_possible_usage: true
-can_create_usage_detection_events: true
-can_create_value_event_candidates: true
-can_escalate_without_human_review: false
+  can_detect_possible_usage: true
+  can_create_usage_detection_events: true
+  can_create_value_event_candidates: true
+  can_escalate_without_human_review: false
 
 routing_permissions:
-can_prepare_attribution_routes: true
-can_prepare_claim_routes: true
-can_prepare_return_routes: true
-can_execute_payment: false
-can_enforce_claim: false
+  can_prepare_attribution_routes: true
+  can_prepare_claim_routes: true
+  can_prepare_return_routes: true
+  can_execute_payment: false
+  can_enforce_claim: false
 
 review_policy:
-human_review_required: true
-review_required_for:
-- "ownership_interpretation"
-- "compensation_assessment"
-- "payment_execution"
-- "claim_submission"
-- "claim_escalation"
-- "legal_interpretation"
-- "external_settlement"
-- "public_accusation"
-- "governance_action"
-default_review_status: "unreviewed"
+  human_review_required: true
+  review_required_for:
+    - "ownership_interpretation"
+    - "compensation_assessment"
+    - "payment_execution"
+    - "claim_submission"
+    - "claim_escalation"
+    - "legal_interpretation"
+    - "external_settlement"
+    - "public_accusation"
+    - "governance_action"
+  default_review_status: "unreviewed"
 
 boundary_policy:
-no_automatic_ownership: true
-no_automatic_compensation: true
-no_automatic_payment: true
-no_automatic_enforcement: true
-similarity_is_not_proof: true
-agent_is_representative_not_owner: true
+  no_automatic_ownership: true
+  no_automatic_compensation: true
+  no_automatic_payment: true
+  no_automatic_enforcement: true
+  similarity_is_not_proof: true
+  agent_is_representative_not_owner: true
 
 privacy_policy:
-minimal_disclosure: true
-private_trace_data_allowed: false
-wallet_credentials_allowed: false
-external_sharing_requires_review: true
+  minimal_disclosure: true
+  private_trace_data_allowed: false
+  wallet_credentials_allowed: false
+  external_sharing_requires_review: true
 
 governance_policy:
-governance_required: true
-allowed_governance_actions:
-- "review_request"
-- "dispute_request"
-- "correction_request"
-- "attribution_review"
-- "claim_review"
-- "return_route_review"
-- "governance_escalation"
-- "archive"
+  governance_required: true
+  allowed_governance_actions:
+    - "review_request"
+    - "dispute_request"
+    - "correction_request"
+    - "attribution_review"
+    - "claim_review"
+    - "return_route_review"
+    - "governance_escalation"
+    - "archive"
 
 representative_event_log:
-log_enabled: true
-log_reference: "logs/representative-events/sample-personal-agent.log"
-required_event_types:
-- "trace_registered"
-- "usage_detected"
-- "value_event_created"
-- "attribution_route_created"
-- "claim_route_created"
-- "human_review_requested"
-- "claim_rejected"
-- "claim_accepted_for_review"
-- "return_route_prepared"
-- "governance_escalated"
-- "wallet_reference_attached"
+  log_enabled: true
+  log_reference: "logs/representative-events/sample-personal-agent.log"
+  required_event_types:
+    - "trace_registered"
+    - "usage_detected"
+    - "value_event_created"
+    - "attribution_route_created"
+    - "claim_route_created"
+    - "human_review_requested"
+    - "claim_rejected"
+    - "claim_accepted_for_review"
+    - "return_route_prepared"
+    - "governance_escalated"
+    - "wallet_reference_attached"
 
 external_references:
-royalty_os_version: "v0.5.0-draft"
-related_specs:
-- "specs/royalty-os-v0.5-draft.yaml"
-related_docs:
-- "docs/v0.5-structural-diff.md"
-- "docs/personal-ai-agent-royalty-os.md"
-communication_royalty_os_reference: "Communication Royalty OS bridge is planned for a later draft."
+  royalty_os_version: "v0.5.0-draft"
+  related_specs:
+    - "specs/royalty-os-v0.5-draft.yaml"
+  related_docs:
+    - "docs/v0.5-structural-diff.md"
+    - "docs/personal-ai-agent-royalty-os.md"
+  communication_royalty_os_reference: "Communication Royalty OS bridge is planned for a later draft."
 
 notes: >
-This example defines a personal AI agent as a representative interface
-for an individual creator. The agent may assist with trace management,
-usage detection, attribution routing, claim route preparation, and
-human-reviewed value return preparation. It must not automatically decide
-ownership, calculate compensation, execute payments, or enforce claims.
+  This example defines a personal AI agent as a representative interface
+  for an individual creator. The agent may assist with trace management,
+  usage detection, attribution routing, claim route preparation, and
+  human-reviewed value return preparation. It must not automatically decide
+  ownership, calculate compensation, execute payments, or enforce claims.
 
 created_at: "2026-06-06T00:00:00Z"
 updated_at: "2026-06-06T00:00:00Z"
+
