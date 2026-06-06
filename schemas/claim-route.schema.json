@@ -1,0 +1,784 @@
+{
+"$schema": "https://json-schema.org/draft/2020-12/schema",
+"$id": "https://github.com/SamuraiWriter7/royalty-os-v0.5/schemas/claim-route.schema.json",
+"title": "Claim Route Record",
+"description": "Schema for validating a claim route record in Royalty OS v0.5. A claim route structures a reviewable request for attribution, usage review, correction, dispute handling, royalty review, value return, or governance escalation. It must not be treated as automatic proof of ownership, infringement, compensation, or claim validity.",
+"type": "object",
+"additionalProperties": false,
+"required": [
+"claim_route_id",
+"schema_version",
+"route_type",
+"status",
+"claimant_reference",
+"representative_agent",
+"source_trace_reference",
+"usage_detection_event_reference",
+"claim_request",
+"claim_assessment",
+"review_policy",
+"boundary_policy",
+"created_at"
+],
+"properties": {
+"claim_route_id": {
+"type": "string",
+"description": "Unique identifier for the claim route.",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 180
+},
+"schema_version": {
+"type": "string",
+"description": "Schema version used by this record.",
+"const": "v0.5.0-draft"
+},
+"route_type": {
+"type": "string",
+"description": "Type of route represented by this record.",
+"const": "claim_route"
+},
+"status": {
+"type": "string",
+"description": "Current lifecycle status of the claim route.",
+"enum": [
+"draft",
+"candidate",
+"submitted_for_review",
+"under_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"escalated",
+"prepared_for_external_process",
+"closed",
+"archived",
+"resolved"
+]
+},
+"claimant_reference": {
+"type": "object",
+"description": "Reference to the individual or entity on whose behalf the claim route is prepared.",
+"additionalProperties": false,
+"required": [
+"claimant_id",
+"claimant_type"
+],
+"properties": {
+"claimant_id": {
+"type": "string",
+"description": "Identifier of the claimant.",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 180
+},
+"claimant_type": {
+"type": "string",
+"enum": [
+"individual",
+"creator",
+"researcher",
+"developer",
+"organization",
+"collective",
+"agent_represented_individual",
+"other"
+]
+},
+"display_name": {
+"type": "string",
+"maxLength": 200
+}
+}
+},
+"representative_agent": {
+"type": "object",
+"description": "Reference to the personal AI agent preparing or assisting with this claim route.",
+"additionalProperties": false,
+"required": [
+"agent_id",
+"agent_role"
+],
+"properties": {
+"agent_id": {
+"type": "string",
+"description": "Identifier of the personal AI agent.",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 180
+},
+"agent_role": {
+"type": "string",
+"enum": [
+"claim_route_assistant",
+"attribution_route_assistant",
+"review_preparation_assistant",
+"return_route_assistant",
+"representative_event_logger"
+]
+},
+"agent_record_reference": {
+"type": "string",
+"description": "Optional reference to the personal agent record.",
+"maxLength": 300
+}
+}
+},
+"source_trace_reference": {
+"type": "object",
+"description": "Reference to the personal trace fingerprint associated with this claim route.",
+"additionalProperties": false,
+"required": [
+"trace_id",
+"trace_type"
+],
+"properties": {
+"trace_id": {
+"type": "string",
+"description": "Identifier of the source trace fingerprint.",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 180
+},
+"trace_type": {
+"type": "string",
+"enum": [
+"writing_pattern",
+"question_structure",
+"prompt_pattern",
+"conceptual_framework",
+"classification_method",
+"reasoning_style",
+"terminology_set",
+"theory_structure",
+"authored_document",
+"public_post",
+"model_output_pattern",
+"mixed_trace_fingerprint"
+]
+},
+"trace_record_reference": {
+"type": "string",
+"description": "Optional reference to the trace fingerprint record.",
+"maxLength": 300
+},
+"trace_element_ids": {
+"type": "array",
+"description": "Optional list of trace element identifiers involved in the claim route.",
+"uniqueItems": true,
+"items": {
+"type": "string",
+"maxLength": 180
+}
+}
+}
+},
+"usage_detection_event_reference": {
+"type": "object",
+"description": "Reference to the usage detection event that supports this claim route.",
+"additionalProperties": false,
+"required": [
+"event_id"
+],
+"properties": {
+"event_id": {
+"type": "string",
+"description": "Identifier of the usage detection event.",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 180
+},
+"event_record_reference": {
+"type": "string",
+"description": "Optional reference to the usage detection event record.",
+"maxLength": 300
+},
+"event_status": {
+"type": "string",
+"enum": [
+"draft",
+"detected",
+"candidate",
+"under_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"escalated",
+"archived",
+"resolved"
+]
+}
+}
+},
+"attribution_route_reference": {
+"type": "object",
+"description": "Optional reference to an attribution route associated with this claim route.",
+"additionalProperties": false,
+"properties": {
+"attribution_route_id": {
+"type": "string",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 180
+},
+"attribution_route_record_reference": {
+"type": "string",
+"maxLength": 300
+},
+"attribution_route_status": {
+"type": "string",
+"enum": [
+"draft",
+"candidate",
+"submitted_for_review",
+"under_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"escalated",
+"archived",
+"resolved"
+]
+}
+}
+},
+"detected_usage_reference": {
+"type": "object",
+"description": "Optional reference to the detected usage artifact, output, event, or communication context.",
+"additionalProperties": false,
+"properties": {
+"usage_reference_id": {
+"type": "string",
+"pattern": "^[a-zA-Z0-9._:/#-]+$",
+"minLength": 3,
+"maxLength": 300
+},
+"usage_source_type": {
+"type": "string",
+"enum": [
+"ai_output",
+"agent_to_agent_message",
+"communication_event",
+"document",
+"article",
+"blog_post",
+"social_post",
+"repository",
+"specification",
+"schema",
+"dataset_reference",
+"model_behavior_observation",
+"conversation_excerpt",
+"other"
+]
+},
+"title": {
+"type": "string",
+"maxLength": 300
+},
+"public_url": {
+"type": "string",
+"format": "uri"
+},
+"observed_at": {
+"type": "string",
+"format": "date-time"
+}
+}
+},
+"claim_request": {
+"type": "object",
+"description": "The reviewable request represented by this claim route.",
+"additionalProperties": false,
+"required": [
+"claim_types",
+"requested_actions",
+"request_summary"
+],
+"properties": {
+"claim_types": {
+"type": "array",
+"description": "Types of claim or review request being prepared.",
+"minItems": 1,
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"attribution_request",
+"usage_review_request",
+"correction_request",
+"dispute_request",
+"royalty_review_request",
+"value_return_request",
+"governance_escalation",
+"archival_request",
+"other"
+]
+}
+},
+"requested_actions": {
+"type": "array",
+"description": "Actions requested through this claim route.",
+"minItems": 1,
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"review_usage",
+"review_attribution",
+"add_citation",
+"add_acknowledgment",
+"correct_record",
+"open_dispute",
+"prepare_royalty_review",
+"prepare_value_return_review",
+"escalate_to_governance",
+"archive_without_action",
+"other"
+]
+}
+},
+"request_summary": {
+"type": "string",
+"description": "Human-readable summary of the requested review or action.",
+"minLength": 1,
+"maxLength": 3000
+},
+"requested_by": {
+"type": "string",
+"description": "Optional identifier of the requester.",
+"maxLength": 180
+}
+}
+},
+"claim_assessment": {
+"type": "object",
+"description": "Reviewable assessment of the claim route. This is not proof and must remain subject to review.",
+"additionalProperties": false,
+"required": [
+"confidence_level",
+"assessment_summary"
+],
+"properties": {
+"confidence_level": {
+"type": "string",
+"description": "Confidence level of the claim assessment. Confidence is not proof.",
+"enum": [
+"unknown",
+"low",
+"medium",
+"high",
+"requires_human_review"
+]
+},
+"assessment_summary": {
+"type": "string",
+"description": "Human-readable summary of why the claim route may be appropriate for review.",
+"minLength": 1,
+"maxLength": 3000
+},
+"supporting_factors": {
+"type": "array",
+"description": "Factors supporting the creation of this claim route. These factors must not be treated as proof by themselves.",
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"usage_detection_event",
+"attribution_route",
+"direct_reference",
+"citation_reference",
+"terminology_overlap",
+"structure_overlap",
+"prompt_pattern_overlap",
+"conceptual_similarity",
+"communication_chain_reference",
+"human_confirmed_context",
+"governance_context",
+"other"
+]
+}
+},
+"limitations": {
+"type": "string",
+"description": "Known limitations, uncertainties, or reasons this claim route requires review.",
+"maxLength": 2000
+}
+}
+},
+"claim_action": {
+"type": "object",
+"description": "Optional action state for this claim route.",
+"additionalProperties": false,
+"properties": {
+"action_status": {
+"type": "string",
+"enum": [
+"not_requested",
+"draft",
+"candidate",
+"submitted_for_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"prepared_for_external_process",
+"closed"
+],
+"default": "candidate"
+},
+"external_process_allowed": {
+"type": "boolean",
+"description": "Whether this claim route may be prepared for an external process after review.",
+"default": false
+},
+"external_process_reference": {
+"type": "string",
+"description": "Optional reference to an external process. This must not imply automatic enforcement.",
+"maxLength": 300
+},
+"action_notes": {
+"type": "string",
+"maxLength": 2000
+}
+}
+},
+"evidence": {
+"type": "object",
+"description": "Reviewable evidence references supporting the claim route.",
+"additionalProperties": false,
+"properties": {
+"evidence_summary": {
+"type": "string",
+"maxLength": 3000
+},
+"evidence_references": {
+"type": "array",
+"description": "References to evidence records, comparison records, documents, usage events, or attribution routes.",
+"items": {
+"type": "string",
+"maxLength": 300
+}
+},
+"comparison_reference": {
+"type": "string",
+"maxLength": 300
+},
+"private_evidence_included": {
+"type": "boolean",
+"description": "Whether private evidence data is included in this claim route. This should normally be false.",
+"default": false
+}
+}
+},
+"value_graph_reference": {
+"type": "object",
+"description": "Optional references to value graph nodes or edges related to this claim route.",
+"additionalProperties": false,
+"properties": {
+"value_graph_node_id": {
+"type": "string",
+"maxLength": 220
+},
+"value_graph_edge_id": {
+"type": "string",
+"maxLength": 220
+},
+"value_event_candidate_id": {
+"type": "string",
+"maxLength": 220
+}
+}
+},
+"return_route_reference": {
+"type": "object",
+"description": "Optional reference to a return route prepared from this claim route.",
+"additionalProperties": false,
+"properties": {
+"return_route_id": {
+"type": "string",
+"maxLength": 220
+},
+"return_route_status": {
+"type": "string",
+"enum": [
+"none",
+"draft",
+"candidate",
+"submitted_for_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"prepared_for_external_process",
+"closed"
+]
+},
+"return_route_record_reference": {
+"type": "string",
+"maxLength": 300
+}
+}
+},
+"review_policy": {
+"type": "object",
+"description": "Review requirements for this claim route.",
+"additionalProperties": false,
+"required": [
+"human_review_required",
+"review_required_for"
+],
+"properties": {
+"human_review_required": {
+"type": "boolean",
+"const": true
+},
+"review_required_for": {
+"type": "array",
+"minItems": 1,
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"claim_interpretation",
+"ownership_interpretation",
+"attribution_interpretation",
+"usage_interpretation",
+"compensation_assessment",
+"payment_execution",
+"public_disclosure",
+"external_sharing",
+"external_process",
+"governance_action",
+"escalation"
+]
+}
+},
+"default_review_status": {
+"type": "string",
+"enum": [
+"unreviewed",
+"under_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"escalated",
+"archived",
+"resolved"
+],
+"default": "unreviewed"
+}
+}
+},
+"boundary_policy": {
+"type": "object",
+"description": "Boundary rules for interpreting this claim route.",
+"additionalProperties": false,
+"required": [
+"not_ownership_proof",
+"not_infringement_proof",
+"not_compensation_proof",
+"not_claim_validity_proof",
+"claim_route_is_not_enforcement",
+"similarity_is_not_proof",
+"requires_human_review"
+],
+"properties": {
+"not_ownership_proof": {
+"type": "boolean",
+"const": true
+},
+"not_infringement_proof": {
+"type": "boolean",
+"const": true
+},
+"not_compensation_proof": {
+"type": "boolean",
+"const": true
+},
+"not_claim_validity_proof": {
+"type": "boolean",
+"const": true
+},
+"claim_route_is_not_enforcement": {
+"type": "boolean",
+"const": true
+},
+"similarity_is_not_proof": {
+"type": "boolean",
+"const": true
+},
+"requires_human_review": {
+"type": "boolean",
+"const": true
+},
+"no_automatic_accusation": {
+"type": "boolean",
+"const": true
+},
+"no_automatic_enforcement": {
+"type": "boolean",
+"const": true
+},
+"no_automatic_payment": {
+"type": "boolean",
+"const": true
+}
+}
+},
+"privacy_policy": {
+"type": "object",
+"description": "Privacy constraints for this claim route.",
+"additionalProperties": false,
+"properties": {
+"minimal_disclosure": {
+"type": "boolean",
+"default": true
+},
+"private_trace_data_included": {
+"type": "boolean",
+"description": "Whether private trace data is included in the claim route. This should normally be false.",
+"default": false
+},
+"private_evidence_included": {
+"type": "boolean",
+"description": "Whether private evidence data is included in the claim route. This should normally be false.",
+"default": false
+},
+"public_summary_allowed": {
+"type": "boolean",
+"default": true
+},
+"external_sharing_requires_review": {
+"type": "boolean",
+"default": true
+}
+}
+},
+"governance": {
+"type": "object",
+"description": "Governance state for this claim route.",
+"additionalProperties": false,
+"properties": {
+"governance_status": {
+"type": "string",
+"enum": [
+"none",
+"review_requested",
+"under_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"escalated",
+"resolved",
+"archived"
+],
+"default": "none"
+},
+"reviewer_notes": {
+"type": "string",
+"maxLength": 3000
+},
+"governance_actions": {
+"type": "array",
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"review_request",
+"dispute_request",
+"correction_request",
+"attribution_review",
+"claim_review",
+"return_route_review",
+"governance_escalation",
+"archive"
+]
+}
+}
+}
+},
+"related_routes": {
+"type": "object",
+"description": "Optional references to related attribution, return, or representative event routes.",
+"additionalProperties": false,
+"properties": {
+"attribution_routes": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 220
+}
+},
+"return_routes": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 220
+}
+},
+"representative_events": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 220
+}
+}
+}
+},
+"external_references": {
+"type": "object",
+"description": "Optional references to related specs, documents, repositories, or systems.",
+"additionalProperties": false,
+"properties": {
+"royalty_os_version": {
+"type": "string",
+"default": "v0.5.0-draft"
+},
+"related_specs": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 256
+}
+},
+"related_docs": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 256
+}
+},
+"related_trace": {
+"type": "string",
+"maxLength": 220
+},
+"related_usage_event": {
+"type": "string",
+"maxLength": 220
+},
+"related_attribution_route": {
+"type": "string",
+"maxLength": 220
+},
+"related_agent": {
+"type": "string",
+"maxLength": 220
+}
+}
+},
+"notes": {
+"type": "string",
+"description": "Optional notes about this claim route.",
+"maxLength": 3000
+},
+"created_at": {
+"type": "string",
+"description": "Creation timestamp in date-time format.",
+"format": "date-time"
+},
+"updated_at": {
+"type": "string",
+"description": "Last update timestamp in date-time format.",
+"format": "date-time"
+}
+}
+}
