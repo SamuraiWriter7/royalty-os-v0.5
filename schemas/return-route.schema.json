@@ -1,0 +1,927 @@
+{
+"$schema": "https://json-schema.org/draft/2020-12/schema",
+"$id": "https://github.com/SamuraiWriter7/royalty-os-v0.5/schemas/return-route.schema.json",
+"title": "Return Route Record",
+"description": "Schema for validating a return route record in Royalty OS v0.5. A return route structures a human-reviewed pathway for attribution, acknowledgment, citation, reputation credit, royalty intent, micro-royalty routing, wallet reference, or external settlement preparation. It must not be treated as automatic proof of ownership, infringement, compensation, payment obligation, or claim validity.",
+"type": "object",
+"additionalProperties": false,
+"required": [
+"return_route_id",
+"schema_version",
+"route_type",
+"status",
+"beneficiary_reference",
+"representative_agent",
+"source_trace_reference",
+"claim_route_reference",
+"return_request",
+"return_assessment",
+"return_pathway",
+"review_policy",
+"boundary_policy",
+"created_at"
+],
+"properties": {
+"return_route_id": {
+"type": "string",
+"description": "Unique identifier for the return route.",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 180
+},
+"schema_version": {
+"type": "string",
+"description": "Schema version used by this record.",
+"const": "v0.5.0-draft"
+},
+"route_type": {
+"type": "string",
+"description": "Type of route represented by this record.",
+"const": "return_route"
+},
+"status": {
+"type": "string",
+"description": "Current lifecycle status of the return route.",
+"enum": [
+"draft",
+"candidate",
+"submitted_for_review",
+"under_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"prepared_for_external_process",
+"executed_externally",
+"closed",
+"archived",
+"resolved"
+]
+},
+"beneficiary_reference": {
+"type": "object",
+"description": "Reference to the individual or entity that may receive attribution, recognition, value return, or external settlement consideration.",
+"additionalProperties": false,
+"required": [
+"beneficiary_id",
+"beneficiary_type"
+],
+"properties": {
+"beneficiary_id": {
+"type": "string",
+"description": "Identifier of the possible beneficiary.",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 180
+},
+"beneficiary_type": {
+"type": "string",
+"enum": [
+"individual",
+"creator",
+"researcher",
+"developer",
+"organization",
+"collective",
+"agent_represented_individual",
+"other"
+]
+},
+"display_name": {
+"type": "string",
+"maxLength": 200
+}
+}
+},
+"representative_agent": {
+"type": "object",
+"description": "Reference to the personal AI agent preparing or assisting with this return route.",
+"additionalProperties": false,
+"required": [
+"agent_id",
+"agent_role"
+],
+"properties": {
+"agent_id": {
+"type": "string",
+"description": "Identifier of the personal AI agent.",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 180
+},
+"agent_role": {
+"type": "string",
+"enum": [
+"return_route_assistant",
+"claim_route_assistant",
+"attribution_route_assistant",
+"review_preparation_assistant",
+"representative_event_logger"
+]
+},
+"agent_record_reference": {
+"type": "string",
+"description": "Optional reference to the personal agent record.",
+"maxLength": 300
+}
+}
+},
+"source_trace_reference": {
+"type": "object",
+"description": "Reference to the personal trace fingerprint associated with this return route.",
+"additionalProperties": false,
+"required": [
+"trace_id",
+"trace_type"
+],
+"properties": {
+"trace_id": {
+"type": "string",
+"description": "Identifier of the source trace fingerprint.",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 180
+},
+"trace_type": {
+"type": "string",
+"enum": [
+"writing_pattern",
+"question_structure",
+"prompt_pattern",
+"conceptual_framework",
+"classification_method",
+"reasoning_style",
+"terminology_set",
+"theory_structure",
+"authored_document",
+"public_post",
+"model_output_pattern",
+"mixed_trace_fingerprint"
+]
+},
+"trace_record_reference": {
+"type": "string",
+"description": "Optional reference to the trace fingerprint record.",
+"maxLength": 300
+},
+"trace_element_ids": {
+"type": "array",
+"description": "Optional list of trace element identifiers involved in the return route.",
+"uniqueItems": true,
+"items": {
+"type": "string",
+"maxLength": 180
+}
+}
+}
+},
+"claim_route_reference": {
+"type": "object",
+"description": "Reference to the claim route that produced or supports this return route.",
+"additionalProperties": false,
+"required": [
+"claim_route_id"
+],
+"properties": {
+"claim_route_id": {
+"type": "string",
+"description": "Identifier of the claim route.",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 180
+},
+"claim_route_record_reference": {
+"type": "string",
+"description": "Optional reference to the claim route record.",
+"maxLength": 300
+},
+"claim_route_status": {
+"type": "string",
+"enum": [
+"draft",
+"candidate",
+"submitted_for_review",
+"under_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"escalated",
+"prepared_for_external_process",
+"closed",
+"archived",
+"resolved"
+]
+}
+}
+},
+"attribution_route_reference": {
+"type": "object",
+"description": "Optional reference to an attribution route associated with this return route.",
+"additionalProperties": false,
+"properties": {
+"attribution_route_id": {
+"type": "string",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 180
+},
+"attribution_route_record_reference": {
+"type": "string",
+"maxLength": 300
+},
+"attribution_route_status": {
+"type": "string",
+"enum": [
+"draft",
+"candidate",
+"submitted_for_review",
+"under_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"escalated",
+"archived",
+"resolved"
+]
+}
+}
+},
+"usage_detection_event_reference": {
+"type": "object",
+"description": "Optional reference to the usage detection event associated with this return route.",
+"additionalProperties": false,
+"properties": {
+"event_id": {
+"type": "string",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 180
+},
+"event_record_reference": {
+"type": "string",
+"maxLength": 300
+},
+"event_status": {
+"type": "string",
+"enum": [
+"draft",
+"detected",
+"candidate",
+"under_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"escalated",
+"archived",
+"resolved"
+]
+}
+}
+},
+"return_request": {
+"type": "object",
+"description": "The reviewable return request represented by this route.",
+"additionalProperties": false,
+"required": [
+"return_types",
+"requested_actions",
+"request_summary"
+],
+"properties": {
+"return_types": {
+"type": "array",
+"description": "Types of return being requested or prepared.",
+"minItems": 1,
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"attribution",
+"acknowledgment",
+"citation",
+"reputation_credit",
+"access_credit",
+"non_monetary_recognition",
+"royalty_intent",
+"micro_royalty_routing",
+"wallet_reference",
+"governance_reviewed_compensation_pathway",
+"external_settlement_preparation",
+"archival_record",
+"other"
+]
+}
+},
+"requested_actions": {
+"type": "array",
+"description": "Actions requested through this return route.",
+"minItems": 1,
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"prepare_attribution",
+"prepare_citation",
+"prepare_acknowledgment",
+"prepare_reputation_credit",
+"prepare_royalty_review",
+"prepare_micro_royalty_route",
+"attach_wallet_reference",
+"prepare_external_settlement_reference",
+"submit_for_governance_review",
+"archive_without_action",
+"other"
+]
+}
+},
+"request_summary": {
+"type": "string",
+"description": "Human-readable summary of the requested return pathway.",
+"minLength": 1,
+"maxLength": 3000
+},
+"requested_by": {
+"type": "string",
+"description": "Optional identifier of the requester.",
+"maxLength": 180
+}
+}
+},
+"return_assessment": {
+"type": "object",
+"description": "Reviewable assessment of the return route. This is not proof and must remain subject to review.",
+"additionalProperties": false,
+"required": [
+"confidence_level",
+"assessment_summary"
+],
+"properties": {
+"confidence_level": {
+"type": "string",
+"description": "Confidence level of the return assessment. Confidence is not proof.",
+"enum": [
+"unknown",
+"low",
+"medium",
+"high",
+"requires_human_review"
+]
+},
+"assessment_summary": {
+"type": "string",
+"description": "Human-readable summary of why this return route may be appropriate for review.",
+"minLength": 1,
+"maxLength": 3000
+},
+"supporting_factors": {
+"type": "array",
+"description": "Factors supporting the creation of this return route. These factors must not be treated as proof by themselves.",
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"claim_route",
+"attribution_route",
+"usage_detection_event",
+"value_event_candidate",
+"value_graph_reference",
+"human_confirmed_context",
+"governance_context",
+"external_process_context",
+"other"
+]
+}
+},
+"limitations": {
+"type": "string",
+"description": "Known limitations, uncertainties, or reasons this return route requires review.",
+"maxLength": 2000
+}
+}
+},
+"return_pathway": {
+"type": "object",
+"description": "The prepared return pathway. This structure may reference external systems but must not execute payment automatically.",
+"additionalProperties": false,
+"required": [
+"pathway_type",
+"pathway_status"
+],
+"properties": {
+"pathway_type": {
+"type": "string",
+"enum": [
+"attribution_only",
+"citation_only",
+"acknowledgment_only",
+"non_monetary_recognition",
+"royalty_intent",
+"micro_royalty_route",
+"wallet_reference_route",
+"external_settlement_reference",
+"governance_reviewed_compensation_pathway",
+"archival_record",
+"mixed_return_pathway"
+]
+},
+"pathway_status": {
+"type": "string",
+"enum": [
+"draft",
+"candidate",
+"submitted_for_review",
+"under_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"prepared_for_external_process",
+"executed_externally",
+"closed",
+"archived"
+]
+},
+"pathway_summary": {
+"type": "string",
+"maxLength": 3000
+},
+"external_execution_required": {
+"type": "boolean",
+"description": "Whether execution, if any, must occur outside Royalty OS v0.5.",
+"const": true
+},
+"external_execution_allowed_after_review": {
+"type": "boolean",
+"description": "Whether an external process may execute the return after review.",
+"default": false
+}
+}
+},
+"wallet_reference": {
+"type": "object",
+"description": "Optional reference to a wallet or value return destination. Sensitive credentials must not be stored here.",
+"additionalProperties": false,
+"properties": {
+"wallet_reference_id": {
+"type": "string",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 180
+},
+"wallet_type": {
+"type": "string",
+"enum": [
+"none",
+"external_wallet_reference",
+"platform_account_reference",
+"payment_processor_reference",
+"non_monetary_credit_account",
+"reputation_credit_account",
+"other"
+],
+"default": "none"
+},
+"wallet_reference_status": {
+"type": "string",
+"enum": [
+"none",
+"draft",
+"candidate",
+"submitted_for_review",
+"accepted_for_review",
+"rejected",
+"archived"
+],
+"default": "none"
+},
+"sensitive_credentials_included": {
+"type": "boolean",
+"description": "Sensitive wallet credentials must not be included in the core OS record.",
+"const": false
+},
+"wallet_notes": {
+"type": "string",
+"maxLength": 2000
+}
+}
+},
+"return_units": {
+"type": "array",
+"description": "Optional structured return units. These are reviewable proposals, not automatic payments.",
+"items": {
+"type": "object",
+"additionalProperties": false,
+"required": [
+"unit_id",
+"unit_type",
+"unit_status"
+],
+"properties": {
+"unit_id": {
+"type": "string",
+"pattern": "^[a-zA-Z0-9._:-]+$",
+"minLength": 3,
+"maxLength": 180
+},
+"unit_type": {
+"type": "string",
+"enum": [
+"citation",
+"acknowledgment",
+"reputation_credit",
+"access_credit",
+"royalty_intent",
+"micro_royalty_intent",
+"external_settlement_reference",
+"non_monetary_recognition",
+"other"
+]
+},
+"unit_status": {
+"type": "string",
+"enum": [
+"draft",
+"candidate",
+"submitted_for_review",
+"accepted_for_review",
+"rejected",
+"prepared_for_external_process",
+"executed_externally",
+"archived"
+]
+},
+"unit_description": {
+"type": "string",
+"maxLength": 2000
+},
+"amount_reference": {
+"type": "object",
+"description": "Optional amount reference. This is not an automatic payment instruction.",
+"additionalProperties": false,
+"properties": {
+"amount_type": {
+"type": "string",
+"enum": [
+"none",
+"unspecified",
+"symbolic",
+"points",
+"credit_units",
+"currency_reference",
+"external_settlement_amount_reference",
+"other"
+],
+"default": "none"
+},
+"amount_value": {
+"type": "number"
+},
+"currency_or_unit": {
+"type": "string",
+"maxLength": 60
+},
+"amount_is_reviewed": {
+"type": "boolean",
+"default": false
+},
+"amount_is_payment_instruction": {
+"type": "boolean",
+"description": "This must remain false inside Royalty OS v0.5.",
+"const": false
+}
+}
+}
+}
+}
+},
+"evidence": {
+"type": "object",
+"description": "Reviewable evidence references supporting the return route.",
+"additionalProperties": false,
+"properties": {
+"evidence_summary": {
+"type": "string",
+"maxLength": 3000
+},
+"evidence_references": {
+"type": "array",
+"description": "References to evidence records, comparison records, usage events, attribution routes, claim routes, or governance records.",
+"items": {
+"type": "string",
+"maxLength": 300
+}
+},
+"private_evidence_included": {
+"type": "boolean",
+"description": "Whether private evidence data is included in this return route. This should normally be false.",
+"default": false
+}
+}
+},
+"value_graph_reference": {
+"type": "object",
+"description": "Optional references to value graph nodes or edges related to this return route.",
+"additionalProperties": false,
+"properties": {
+"value_graph_node_id": {
+"type": "string",
+"maxLength": 220
+},
+"value_graph_edge_id": {
+"type": "string",
+"maxLength": 220
+},
+"value_event_candidate_id": {
+"type": "string",
+"maxLength": 220
+}
+}
+},
+"review_policy": {
+"type": "object",
+"description": "Review requirements for this return route.",
+"additionalProperties": false,
+"required": [
+"human_review_required",
+"review_required_for"
+],
+"properties": {
+"human_review_required": {
+"type": "boolean",
+"const": true
+},
+"review_required_for": {
+"type": "array",
+"minItems": 1,
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"return_interpretation",
+"claim_interpretation",
+"ownership_interpretation",
+"attribution_interpretation",
+"usage_interpretation",
+"compensation_assessment",
+"payment_execution",
+"wallet_reference",
+"public_disclosure",
+"external_sharing",
+"external_process",
+"governance_action",
+"escalation"
+]
+}
+},
+"default_review_status": {
+"type": "string",
+"enum": [
+"unreviewed",
+"under_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"escalated",
+"archived",
+"resolved"
+],
+"default": "unreviewed"
+}
+}
+},
+"boundary_policy": {
+"type": "object",
+"description": "Boundary rules for interpreting this return route.",
+"additionalProperties": false,
+"required": [
+"not_ownership_proof",
+"not_infringement_proof",
+"not_compensation_proof",
+"not_payment_instruction",
+"not_claim_validity_proof",
+"return_route_is_not_execution",
+"similarity_is_not_proof",
+"requires_human_review"
+],
+"properties": {
+"not_ownership_proof": {
+"type": "boolean",
+"const": true
+},
+"not_infringement_proof": {
+"type": "boolean",
+"const": true
+},
+"not_compensation_proof": {
+"type": "boolean",
+"const": true
+},
+"not_payment_instruction": {
+"type": "boolean",
+"const": true
+},
+"not_claim_validity_proof": {
+"type": "boolean",
+"const": true
+},
+"return_route_is_not_execution": {
+"type": "boolean",
+"const": true
+},
+"similarity_is_not_proof": {
+"type": "boolean",
+"const": true
+},
+"requires_human_review": {
+"type": "boolean",
+"const": true
+},
+"no_automatic_accusation": {
+"type": "boolean",
+"const": true
+},
+"no_automatic_enforcement": {
+"type": "boolean",
+"const": true
+},
+"no_automatic_payment": {
+"type": "boolean",
+"const": true
+}
+}
+},
+"privacy_policy": {
+"type": "object",
+"description": "Privacy constraints for this return route.",
+"additionalProperties": false,
+"properties": {
+"minimal_disclosure": {
+"type": "boolean",
+"default": true
+},
+"private_trace_data_included": {
+"type": "boolean",
+"description": "Whether private trace data is included in the return route. This should normally be false.",
+"default": false
+},
+"private_evidence_included": {
+"type": "boolean",
+"description": "Whether private evidence data is included in the return route. This should normally be false.",
+"default": false
+},
+"sensitive_wallet_credentials_included": {
+"type": "boolean",
+"description": "Sensitive wallet credentials must not be included.",
+"const": false
+},
+"public_summary_allowed": {
+"type": "boolean",
+"default": true
+},
+"external_sharing_requires_review": {
+"type": "boolean",
+"default": true
+}
+}
+},
+"governance": {
+"type": "object",
+"description": "Governance state for this return route.",
+"additionalProperties": false,
+"properties": {
+"governance_status": {
+"type": "string",
+"enum": [
+"none",
+"review_requested",
+"under_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"escalated",
+"prepared_for_external_process",
+"resolved",
+"archived"
+],
+"default": "none"
+},
+"reviewer_notes": {
+"type": "string",
+"maxLength": 3000
+},
+"governance_actions": {
+"type": "array",
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"review_request",
+"dispute_request",
+"correction_request",
+"attribution_review",
+"claim_review",
+"return_route_review",
+"compensation_review",
+"external_process_review",
+"governance_escalation",
+"archive"
+]
+}
+}
+}
+},
+"related_routes": {
+"type": "object",
+"description": "Optional references to related attribution, claim, usage, or representative event routes.",
+"additionalProperties": false,
+"properties": {
+"attribution_routes": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 220
+}
+},
+"claim_routes": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 220
+}
+},
+"usage_detection_events": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 220
+}
+},
+"representative_events": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 220
+}
+}
+}
+},
+"external_references": {
+"type": "object",
+"description": "Optional references to related specs, documents, repositories, or systems.",
+"additionalProperties": false,
+"properties": {
+"royalty_os_version": {
+"type": "string",
+"default": "v0.5.0-draft"
+},
+"related_specs": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 256
+}
+},
+"related_docs": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 256
+}
+},
+"related_trace": {
+"type": "string",
+"maxLength": 220
+},
+"related_usage_event": {
+"type": "string",
+"maxLength": 220
+},
+"related_attribution_route": {
+"type": "string",
+"maxLength": 220
+},
+"related_claim_route": {
+"type": "string",
+"maxLength": 220
+},
+"related_agent": {
+"type": "string",
+"maxLength": 220
+}
+}
+},
+"notes": {
+"type": "string",
+"description": "Optional notes about this return route.",
+"maxLength": 3000
+},
+"created_at": {
+"type": "string",
+"description": "Creation timestamp in date-time format.",
+"format": "date-time"
+},
+"updated_at": {
+"type": "string",
+"description": "Last update timestamp in date-time format.",
+"format": "date-time"
+}
+}
+}
