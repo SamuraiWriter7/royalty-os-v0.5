@@ -1,0 +1,447 @@
+{
+"$schema": "https://json-schema.org/draft/2020-12/schema",
+"$id": "https://github.com/SamuraiWriter7/royalty-os-v0.5/schemas/personal-agent.schema.json",
+"title": "Personal AI Agent Record",
+"description": "Schema for validating a personal AI agent record in Royalty OS v0.5. A personal AI agent acts as a representative interface for an individual. It must not automatically determine ownership, calculate compensation, execute payments, or enforce claims.",
+"type": "object",
+"additionalProperties": false,
+"required": [
+"agent_id",
+"schema_version",
+"agent_name",
+"agent_type",
+"status",
+"represented_individual",
+"allowed_roles",
+"prohibited_roles",
+"review_policy",
+"boundary_policy",
+"created_at"
+],
+"properties": {
+"agent_id": {
+"type": "string",
+"description": "Unique identifier for the personal AI agent.",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 128
+},
+"schema_version": {
+"type": "string",
+"description": "Schema version used by this record.",
+"const": "v0.5.0-draft"
+},
+"agent_name": {
+"type": "string",
+"description": "Human-readable name of the personal AI agent.",
+"minLength": 1,
+"maxLength": 160
+},
+"agent_type": {
+"type": "string",
+"description": "Type of personal AI agent.",
+"enum": [
+"personal_ai_agent",
+"personal_trace_agent",
+"personal_royalty_agent",
+"personal_value_routing_agent",
+"personal_representative_agent"
+]
+},
+"status": {
+"type": "string",
+"description": "Current lifecycle status of the agent.",
+"enum": [
+"draft",
+"active",
+"inactive",
+"suspended",
+"retired",
+"archived"
+]
+},
+"represented_individual": {
+"type": "object",
+"description": "Reference to the individual represented by the personal AI agent.",
+"additionalProperties": false,
+"required": [
+"individual_id",
+"representation_scope"
+],
+"properties": {
+"individual_id": {
+"type": "string",
+"description": "Identifier or reference for the represented individual.",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 128
+},
+"display_name": {
+"type": "string",
+"description": "Optional display name of the represented individual.",
+"maxLength": 160
+},
+"representation_scope": {
+"type": "array",
+"description": "Areas in which the agent may represent the individual.",
+"minItems": 1,
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"trace_management",
+"usage_detection",
+"value_event_preparation",
+"attribution_routing",
+"claim_route_preparation",
+"review_preparation",
+"return_route_preparation",
+"representative_event_logging"
+]
+}
+}
+}
+},
+"allowed_roles": {
+"type": "array",
+"description": "Roles the personal AI agent is allowed to perform.",
+"minItems": 1,
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"trace_manager",
+"usage_detection_assistant",
+"value_event_preparer",
+"attribution_route_assistant",
+"claim_route_assistant",
+"review_preparation_assistant",
+"return_route_assistant",
+"representative_event_logger"
+]
+}
+},
+"prohibited_roles": {
+"type": "array",
+"description": "Roles the personal AI agent is explicitly prohibited from performing.",
+"minItems": 1,
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"automatic_owner",
+"automatic_judge",
+"automatic_payment_executor",
+"automatic_legal_enforcer",
+"automatic_infringement_accuser",
+"automatic_compensation_calculator",
+"automatic_claim_enforcer"
+]
+}
+},
+"trace_permissions": {
+"type": "object",
+"description": "Permissions related to personal trace management.",
+"additionalProperties": false,
+"properties": {
+"can_register_trace_references": {
+"type": "boolean",
+"default": true
+},
+"can_update_trace_references": {
+"type": "boolean",
+"default": true
+},
+"can_delete_trace_references": {
+"type": "boolean",
+"default": false
+},
+"can_generate_trace_fingerprints": {
+"type": "boolean",
+"default": true
+},
+"can_expose_private_trace_data": {
+"type": "boolean",
+"description": "Whether the agent may expose private trace data. This should normally be false.",
+"default": false
+}
+}
+},
+"usage_detection_permissions": {
+"type": "object",
+"description": "Permissions related to AI-mediated usage detection.",
+"additionalProperties": false,
+"properties": {
+"can_detect_possible_usage": {
+"type": "boolean",
+"default": true
+},
+"can_create_usage_detection_events": {
+"type": "boolean",
+"default": true
+},
+"can_create_value_event_candidates": {
+"type": "boolean",
+"default": true
+},
+"can_escalate_without_human_review": {
+"type": "boolean",
+"description": "Whether the agent may escalate a usage event without human review. This should normally be false.",
+"default": false
+}
+}
+},
+"routing_permissions": {
+"type": "object",
+"description": "Permissions related to attribution, claim, and return route preparation.",
+"additionalProperties": false,
+"properties": {
+"can_prepare_attribution_routes": {
+"type": "boolean",
+"default": true
+},
+"can_prepare_claim_routes": {
+"type": "boolean",
+"default": true
+},
+"can_prepare_return_routes": {
+"type": "boolean",
+"default": true
+},
+"can_execute_payment": {
+"type": "boolean",
+"description": "Whether the agent may execute payment. This must remain false for the core Royalty OS v0.5 boundary.",
+"const": false
+},
+"can_enforce_claim": {
+"type": "boolean",
+"description": "Whether the agent may enforce a claim. This must remain false for the core Royalty OS v0.5 boundary.",
+"const": false
+}
+}
+},
+"review_policy": {
+"type": "object",
+"description": "Human and governance review requirements for agent-mediated activity.",
+"additionalProperties": false,
+"required": [
+"human_review_required",
+"review_required_for"
+],
+"properties": {
+"human_review_required": {
+"type": "boolean",
+"description": "Whether human review is required before attribution, claim, return, compensation, payment, or enforcement action.",
+"const": true
+},
+"review_required_for": {
+"type": "array",
+"description": "Actions that require human or governance review.",
+"minItems": 1,
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"ownership_interpretation",
+"compensation_assessment",
+"payment_execution",
+"claim_submission",
+"claim_escalation",
+"legal_interpretation",
+"external_settlement",
+"public_accusation",
+"governance_action"
+]
+}
+},
+"default_review_status": {
+"type": "string",
+"enum": [
+"unreviewed",
+"under_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"escalated",
+"archived",
+"resolved"
+],
+"default": "unreviewed"
+}
+}
+},
+"boundary_policy": {
+"type": "object",
+"description": "Boundary rules that prevent the agent from becoming an automatic ownership, payment, or enforcement system.",
+"additionalProperties": false,
+"required": [
+"no_automatic_ownership",
+"no_automatic_compensation",
+"no_automatic_payment",
+"no_automatic_enforcement",
+"similarity_is_not_proof"
+],
+"properties": {
+"no_automatic_ownership": {
+"type": "boolean",
+"const": true
+},
+"no_automatic_compensation": {
+"type": "boolean",
+"const": true
+},
+"no_automatic_payment": {
+"type": "boolean",
+"const": true
+},
+"no_automatic_enforcement": {
+"type": "boolean",
+"const": true
+},
+"similarity_is_not_proof": {
+"type": "boolean",
+"description": "Similarity alone must not be treated as proof of infringement, ownership, or misuse.",
+"const": true
+},
+"agent_is_representative_not_owner": {
+"type": "boolean",
+"description": "The agent acts as a representative interface and does not become the owner of the value or trace.",
+"const": true
+}
+}
+},
+"privacy_policy": {
+"type": "object",
+"description": "Privacy and data exposure constraints for the personal AI agent.",
+"additionalProperties": false,
+"properties": {
+"minimal_disclosure": {
+"type": "boolean",
+"default": true
+},
+"private_trace_data_allowed": {
+"type": "boolean",
+"description": "Whether private trace data may be exposed outside the agent boundary. This should normally be false.",
+"default": false
+},
+"wallet_credentials_allowed": {
+"type": "boolean",
+"description": "Whether sensitive wallet credentials may be stored in the agent record. This must remain false.",
+"const": false
+},
+"external_sharing_requires_review": {
+"type": "boolean",
+"default": true
+}
+}
+},
+"governance_policy": {
+"type": "object",
+"description": "Governance settings for representative activity.",
+"additionalProperties": false,
+"properties": {
+"governance_required": {
+"type": "boolean",
+"default": true
+},
+"allowed_governance_actions": {
+"type": "array",
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"review_request",
+"dispute_request",
+"correction_request",
+"attribution_review",
+"claim_review",
+"return_route_review",
+"governance_escalation",
+"archive"
+]
+}
+}
+}
+},
+"representative_event_log": {
+"type": "object",
+"description": "Reference or settings for the representative event log.",
+"additionalProperties": false,
+"properties": {
+"log_enabled": {
+"type": "boolean",
+"default": true
+},
+"log_reference": {
+"type": "string",
+"description": "Optional reference to a representative event log.",
+"maxLength": 256
+},
+"required_event_types": {
+"type": "array",
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"trace_registered",
+"usage_detected",
+"value_event_created",
+"attribution_route_created",
+"claim_route_created",
+"human_review_requested",
+"claim_rejected",
+"claim_accepted_for_review",
+"return_route_prepared",
+"governance_escalated",
+"wallet_reference_attached"
+]
+}
+}
+}
+},
+"external_references": {
+"type": "object",
+"description": "Optional references to related systems, repositories, or documents.",
+"additionalProperties": false,
+"properties": {
+"royalty_os_version": {
+"type": "string",
+"default": "v0.5.0-draft"
+},
+"related_specs": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 256
+}
+},
+"related_docs": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 256
+}
+},
+"communication_royalty_os_reference": {
+"type": "string",
+"maxLength": 256
+}
+}
+},
+"notes": {
+"type": "string",
+"description": "Optional notes about this personal AI agent record.",
+"maxLength": 2000
+},
+"created_at": {
+"type": "string",
+"description": "Creation timestamp in date-time format.",
+"format": "date-time"
+},
+"updated_at": {
+"type": "string",
+"description": "Last update timestamp in date-time format.",
+"format": "date-time"
+}
+}
+}
