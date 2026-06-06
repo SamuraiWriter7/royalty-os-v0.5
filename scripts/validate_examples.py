@@ -174,6 +174,11 @@ def main() -> int:
     "example": REPO_ROOT / "examples" / "claim-route.example.yaml",
 },
 
+{
+    "name": "Claim Route",
+    "schema": REPO_ROOT / "schemas" / "claim-route.schema.json",
+    "example": REPO_ROOT / "examples" / "claim-route.example.yaml",
+},
 
 if __name__ == "__main__":
     sys.exit(main())
