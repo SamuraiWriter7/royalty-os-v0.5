@@ -1,0 +1,147 @@
+attribution_route_id: "attribution:route:sample-001"
+schema_version: "v0.5.0-draft"
+route_type: "attribution_route"
+status: "candidate"
+
+source_trace_reference:
+trace_id: "trace:personal:sample-001"
+trace_type: "mixed_trace_fingerprint"
+trace_record_reference: "examples/trace-fingerprint.example.yaml"
+trace_element_ids:
+- "element:question-structure-001"
+- "element:conceptual-framework-001"
+- "element:terminology-001"
+- "element:boundary-principle-001"
+
+usage_detection_event_reference:
+event_id: "usage:event:sample-001"
+event_record_reference: "examples/usage-detection-event.example.yaml"
+event_status: "candidate"
+
+attribution_subject:
+subject_id: "individual:creator:sample-001"
+subject_type: "creator"
+display_name: "Sample Creator"
+represented_by_agent: "agent:personal:sample-001"
+
+attribution_assessment:
+attribution_types:
+- "conceptual_attribution"
+- "terminology_attribution"
+- "structural_attribution"
+confidence_level: "requires_human_review"
+assessment_summary: >
+This attribution route connects the detected usage event to the sample
+creator's registered personal trace fingerprint. The detected output
+appears to overlap with concepts and terminology related to Personal AI
+Agent, Personal Trace Fingerprint, Agent-Mediated Usage Detection,
+Attribution Route, Claim Route, and Human-Reviewed Value Return.
+This route is a reviewable attribution candidate only and does not
+establish ownership, infringement, compensation, or claim validity.
+supporting_factors:
+- "terminology_overlap"
+- "structure_overlap"
+- "conceptual_similarity"
+limitations: >
+The attribution relationship may reflect common terminology, independent
+reasoning, public discourse, or parallel conceptual development. Human
+and governance review are required before any public attribution, claim
+route, compensation assessment, or external action.
+
+attribution_action:
+requested_action: "citation"
+action_status: "candidate"
+action_notes: >
+A citation or acknowledgment may be considered if human review confirms
+that the detected usage meaningfully relates to the registered trace
+fingerprint. No automatic attribution or public claim is executed by
+this record.
+
+evidence:
+evidence_summary: >
+The attribution route is supported by the related usage detection event,
+the registered trace fingerprint, and comparison references showing
+overlap in terminology and structural concepts. These evidence references
+are review materials only.
+evidence_references:
+- "usage:event:sample-001"
+- "trace:personal:sample-001"
+- "evidence:comparison:sample-001"
+comparison_reference: "evidence:comparison:sample-001"
+private_evidence_included: false
+
+value_graph_reference:
+value_graph_node_id: "value:graph:node:sample-001"
+value_graph_edge_id: "value:graph:edge:sample-001"
+value_event_candidate_id: "value:event:candidate:sample-001"
+
+review_policy:
+human_review_required: true
+review_required_for:
+- "attribution_interpretation"
+- "ownership_interpretation"
+- "public_attribution"
+- "claim_route_creation"
+- "compensation_assessment"
+- "external_sharing"
+- "governance_action"
+- "escalation"
+default_review_status: "unreviewed"
+
+boundary_policy:
+not_ownership_proof: true
+not_infringement_proof: true
+not_compensation_proof: true
+not_claim_validity_proof: true
+attribution_is_not_payment: true
+similarity_is_not_proof: true
+requires_human_review: true
+no_automatic_accusation: true
+no_automatic_enforcement: true
+
+privacy_policy:
+minimal_disclosure: true
+private_trace_data_included: false
+public_summary_allowed: true
+external_sharing_requires_review: true
+
+governance:
+governance_status: "review_requested"
+reviewer_notes: >
+This attribution route is prepared for review only. It should not be
+treated as proof of ownership, infringement, compensation, or claim
+validity. Review should determine whether attribution, acknowledgment,
+citation, archival, rejection, or escalation is appropriate.
+governance_actions:
+- "review_request"
+- "attribution_review"
+- "claim_review"
+
+related_routes:
+claim_routes:
+- "claim:route:sample-001"
+return_routes:
+- "return:route:sample-001"
+representative_events:
+- "representative:event:sample-001"
+
+external_references:
+royalty_os_version: "v0.5.0-draft"
+related_specs:
+- "specs/royalty-os-v0.5-draft.yaml"
+related_docs:
+- "docs/v0.5-structural-diff.md"
+- "docs/personal-ai-agent-royalty-os.md"
+related_trace: "trace:personal:sample-001"
+related_usage_event: "usage:event:sample-001"
+related_agent: "agent:personal:sample-001"
+
+notes: >
+This example defines an attribution route that connects a detected usage
+event to a registered personal trace fingerprint. The route is intended
+to make a possible attribution relationship visible, reviewable, and
+governable. It does not prove ownership, infringement, compensation, or
+claim validity, and it does not execute payment or enforcement.
+
+created_at: "2026-06-06T00:00:00Z"
+updated_at: "2026-06-06T00:00:00Z"
