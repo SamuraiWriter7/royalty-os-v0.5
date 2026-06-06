@@ -1,0 +1,641 @@
+{
+"$schema": "https://json-schema.org/draft/2020-12/schema",
+"$id": "https://github.com/SamuraiWriter7/royalty-os-v0.5/schemas/representative-event.schema.json",
+"title": "Representative Event Record",
+"description": "Schema for validating a representative event record in Royalty OS v0.5. A representative event records actions performed by or through a personal AI agent. It provides transparency and auditability for trace registration, usage detection, attribution routing, claim routing, return route preparation, review requests, governance escalation, and wallet reference attachment. It must not be treated as automatic proof of ownership, infringement, compensation, payment obligation, or claim validity.",
+"type": "object",
+"additionalProperties": false,
+"required": [
+"representative_event_id",
+"schema_version",
+"event_type",
+"status",
+"actor_agent",
+"represented_individual",
+"event_subject",
+"event_action",
+"review_policy",
+"boundary_policy",
+"created_at"
+],
+"properties": {
+"representative_event_id": {
+"type": "string",
+"description": "Unique identifier for the representative event.",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 180
+},
+"schema_version": {
+"type": "string",
+"description": "Schema version used by this record.",
+"const": "v0.5.0-draft"
+},
+"event_type": {
+"type": "string",
+"description": "Type of representative event being recorded.",
+"enum": [
+"trace_registered",
+"trace_updated",
+"usage_detected",
+"value_event_created",
+"attribution_route_created",
+"claim_route_created",
+"return_route_prepared",
+"human_review_requested",
+"claim_rejected",
+"claim_accepted_for_review",
+"governance_escalated",
+"wallet_reference_attached",
+"external_process_prepared",
+"record_archived",
+"other"
+]
+},
+"status": {
+"type": "string",
+"description": "Current lifecycle status of the representative event.",
+"enum": [
+"draft",
+"recorded",
+"under_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"escalated",
+"archived",
+"resolved"
+]
+},
+"actor_agent": {
+"type": "object",
+"description": "Personal AI agent that performed or assisted with the recorded event.",
+"additionalProperties": false,
+"required": [
+"agent_id",
+"agent_role"
+],
+"properties": {
+"agent_id": {
+"type": "string",
+"description": "Identifier of the personal AI agent.",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 180
+},
+"agent_role": {
+"type": "string",
+"description": "Role of the personal AI agent in this representative event.",
+"enum": [
+"trace_manager",
+"usage_detection_assistant",
+"value_event_preparer",
+"attribution_route_assistant",
+"claim_route_assistant",
+"return_route_assistant",
+"review_preparation_assistant",
+"representative_event_logger"
+]
+},
+"agent_record_reference": {
+"type": "string",
+"description": "Optional reference to the personal agent record.",
+"maxLength": 300
+}
+}
+},
+"represented_individual": {
+"type": "object",
+"description": "Individual or entity represented by the personal AI agent.",
+"additionalProperties": false,
+"required": [
+"individual_id",
+"individual_type"
+],
+"properties": {
+"individual_id": {
+"type": "string",
+"description": "Identifier of the represented individual or entity.",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 180
+},
+"individual_type": {
+"type": "string",
+"enum": [
+"individual",
+"creator",
+"researcher",
+"developer",
+"organization",
+"collective",
+"agent_represented_individual",
+"other"
+]
+},
+"display_name": {
+"type": "string",
+"maxLength": 200
+}
+}
+},
+"event_subject": {
+"type": "object",
+"description": "The main record, route, trace, event, or reference affected by this representative event.",
+"additionalProperties": false,
+"required": [
+"subject_id",
+"subject_type"
+],
+"properties": {
+"subject_id": {
+"type": "string",
+"description": "Identifier of the subject of this representative event.",
+"pattern": "^[a-zA-Z0-9.*:-]+$",
+"minLength": 3,
+"maxLength": 220
+},
+"subject_type": {
+"type": "string",
+"enum": [
+"personal_agent",
+"trace_fingerprint",
+"usage_detection_event",
+"value_event_candidate",
+"attribution_route",
+"claim_route",
+"return_route",
+"wallet_reference",
+"governance_action",
+"external_process_reference",
+"representative_event",
+"other"
+]
+},
+"subject_record_reference": {
+"type": "string",
+"description": "Optional reference to the subject record.",
+"maxLength": 300
+},
+"subject_status": {
+"type": "string",
+"description": "Optional status of the subject when the representative event was recorded.",
+"maxLength": 120
+}
+}
+},
+"event_action": {
+"type": "object",
+"description": "Description of the action performed, prepared, or logged by the personal AI agent.",
+"additionalProperties": false,
+"required": [
+"action_type",
+"action_summary"
+],
+"properties": {
+"action_type": {
+"type": "string",
+"enum": [
+"registered",
+"updated",
+"detected",
+"created",
+"prepared",
+"requested_review",
+"submitted_for_review",
+"accepted_for_review",
+"rejected",
+"escalated",
+"attached_reference",
+"archived",
+"logged",
+"other"
+]
+},
+"action_summary": {
+"type": "string",
+"description": "Human-readable summary of the representative action.",
+"minLength": 1,
+"maxLength": 3000
+},
+"action_result": {
+"type": "string",
+"description": "Optional result or outcome of the action.",
+"enum": [
+"none",
+"record_created",
+"record_updated",
+"candidate_created",
+"route_created",
+"review_requested",
+"governance_escalated",
+"reference_attached",
+"archived",
+"rejected",
+"accepted_for_review",
+"external_process_prepared",
+"other"
+],
+"default": "none"
+},
+"triggered_by": {
+"type": "string",
+"description": "Optional identifier or explanation of what triggered this event.",
+"maxLength": 300
+}
+}
+},
+"related_records": {
+"type": "object",
+"description": "Optional references to related records in the v0.5 flow.",
+"additionalProperties": false,
+"properties": {
+"personal_agent": {
+"type": "string",
+"maxLength": 220
+},
+"trace_fingerprint": {
+"type": "string",
+"maxLength": 220
+},
+"usage_detection_event": {
+"type": "string",
+"maxLength": 220
+},
+"value_event_candidate": {
+"type": "string",
+"maxLength": 220
+},
+"attribution_route": {
+"type": "string",
+"maxLength": 220
+},
+"claim_route": {
+"type": "string",
+"maxLength": 220
+},
+"return_route": {
+"type": "string",
+"maxLength": 220
+},
+"wallet_reference": {
+"type": "string",
+"maxLength": 220
+},
+"value_graph_node": {
+"type": "string",
+"maxLength": 220
+},
+"value_graph_edge": {
+"type": "string",
+"maxLength": 220
+}
+}
+},
+"review_context": {
+"type": "object",
+"description": "Optional review context associated with this representative event.",
+"additionalProperties": false,
+"properties": {
+"review_status": {
+"type": "string",
+"enum": [
+"unreviewed",
+"under_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"escalated",
+"archived",
+"resolved"
+],
+"default": "unreviewed"
+},
+"review_requested": {
+"type": "boolean",
+"default": false
+},
+"reviewer_notes": {
+"type": "string",
+"maxLength": 3000
+},
+"review_reference": {
+"type": "string",
+"maxLength": 300
+}
+}
+},
+"evidence": {
+"type": "object",
+"description": "Optional evidence references associated with the representative event.",
+"additionalProperties": false,
+"properties": {
+"evidence_summary": {
+"type": "string",
+"maxLength": 3000
+},
+"evidence_references": {
+"type": "array",
+"description": "References to evidence records, comparisons, route records, or related events.",
+"items": {
+"type": "string",
+"maxLength": 300
+}
+},
+"private_evidence_included": {
+"type": "boolean",
+"description": "Whether private evidence data is included in this representative event. This should normally be false.",
+"default": false
+}
+}
+},
+"review_policy": {
+"type": "object",
+"description": "Review requirements for this representative event.",
+"additionalProperties": false,
+"required": [
+"human_review_required",
+"review_required_for"
+],
+"properties": {
+"human_review_required": {
+"type": "boolean",
+"const": true
+},
+"review_required_for": {
+"type": "array",
+"minItems": 1,
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"ownership_interpretation",
+"usage_interpretation",
+"attribution_interpretation",
+"claim_interpretation",
+"return_interpretation",
+"compensation_assessment",
+"payment_execution",
+"wallet_reference",
+"public_disclosure",
+"external_sharing",
+"external_process",
+"governance_action",
+"escalation"
+]
+}
+},
+"default_review_status": {
+"type": "string",
+"enum": [
+"unreviewed",
+"under_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"escalated",
+"archived",
+"resolved"
+],
+"default": "unreviewed"
+}
+}
+},
+"boundary_policy": {
+"type": "object",
+"description": "Boundary rules for interpreting this representative event.",
+"additionalProperties": false,
+"required": [
+"not_ownership_proof",
+"not_infringement_proof",
+"not_compensation_proof",
+"not_payment_instruction",
+"not_claim_validity_proof",
+"representative_event_is_not_execution",
+"similarity_is_not_proof",
+"requires_human_review"
+],
+"properties": {
+"not_ownership_proof": {
+"type": "boolean",
+"const": true
+},
+"not_infringement_proof": {
+"type": "boolean",
+"const": true
+},
+"not_compensation_proof": {
+"type": "boolean",
+"const": true
+},
+"not_payment_instruction": {
+"type": "boolean",
+"const": true
+},
+"not_claim_validity_proof": {
+"type": "boolean",
+"const": true
+},
+"representative_event_is_not_execution": {
+"type": "boolean",
+"const": true
+},
+"similarity_is_not_proof": {
+"type": "boolean",
+"const": true
+},
+"requires_human_review": {
+"type": "boolean",
+"const": true
+},
+"no_automatic_accusation": {
+"type": "boolean",
+"const": true
+},
+"no_automatic_enforcement": {
+"type": "boolean",
+"const": true
+},
+"no_automatic_payment": {
+"type": "boolean",
+"const": true
+}
+}
+},
+"privacy_policy": {
+"type": "object",
+"description": "Privacy constraints for this representative event.",
+"additionalProperties": false,
+"properties": {
+"minimal_disclosure": {
+"type": "boolean",
+"default": true
+},
+"private_trace_data_included": {
+"type": "boolean",
+"description": "Whether private trace data is included in this event. This should normally be false.",
+"default": false
+},
+"private_evidence_included": {
+"type": "boolean",
+"description": "Whether private evidence data is included in this event. This should normally be false.",
+"default": false
+},
+"sensitive_wallet_credentials_included": {
+"type": "boolean",
+"description": "Sensitive wallet credentials must not be included.",
+"const": false
+},
+"public_summary_allowed": {
+"type": "boolean",
+"default": true
+},
+"external_sharing_requires_review": {
+"type": "boolean",
+"default": true
+}
+}
+},
+"governance": {
+"type": "object",
+"description": "Governance state for this representative event.",
+"additionalProperties": false,
+"properties": {
+"governance_status": {
+"type": "string",
+"enum": [
+"none",
+"review_requested",
+"under_review",
+"accepted_for_review",
+"rejected",
+"disputed",
+"escalated",
+"prepared_for_external_process",
+"resolved",
+"archived"
+],
+"default": "none"
+},
+"governance_actions": {
+"type": "array",
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"review_request",
+"dispute_request",
+"correction_request",
+"attribution_review",
+"claim_review",
+"return_route_review",
+"compensation_review",
+"external_process_review",
+"governance_escalation",
+"archive"
+]
+}
+},
+"governance_notes": {
+"type": "string",
+"maxLength": 3000
+}
+}
+},
+"audit": {
+"type": "object",
+"description": "Audit-related metadata for the representative event.",
+"additionalProperties": false,
+"properties": {
+"audit_required": {
+"type": "boolean",
+"default": true
+},
+"audit_status": {
+"type": "string",
+"enum": [
+"not_required",
+"pending",
+"under_review",
+"accepted",
+"rejected",
+"archived"
+],
+"default": "pending"
+},
+"audit_reference": {
+"type": "string",
+"maxLength": 300
+},
+"log_sequence": {
+"type": "integer",
+"minimum": 0
+}
+}
+},
+"external_references": {
+"type": "object",
+"description": "Optional references to related specs, documents, repositories, or systems.",
+"additionalProperties": false,
+"properties": {
+"royalty_os_version": {
+"type": "string",
+"default": "v0.5.0-draft"
+},
+"related_specs": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 256
+}
+},
+"related_docs": {
+"type": "array",
+"items": {
+"type": "string",
+"maxLength": 256
+}
+},
+"related_agent": {
+"type": "string",
+"maxLength": 220
+},
+"related_trace": {
+"type": "string",
+"maxLength": 220
+},
+"related_usage_event": {
+"type": "string",
+"maxLength": 220
+},
+"related_attribution_route": {
+"type": "string",
+"maxLength": 220
+},
+"related_claim_route": {
+"type": "string",
+"maxLength": 220
+},
+"related_return_route": {
+"type": "string",
+"maxLength": 220
+}
+}
+},
+"notes": {
+"type": "string",
+"description": "Optional notes about this representative event.",
+"maxLength": 3000
+},
+"created_at": {
+"type": "string",
+"description": "Creation timestamp in date-time format.",
+"format": "date-time"
+},
+"updated_at": {
+"type": "string",
+"description": "Last update timestamp in date-time format.",
+"format": "date-time"
+}
+}
+}
