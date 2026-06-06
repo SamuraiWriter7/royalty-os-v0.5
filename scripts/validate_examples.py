@@ -168,6 +168,12 @@ def main() -> int:
     print("All examples passed validation.")
     return 0
 
+{
+    "name": "Claim Route",
+    "schema": REPO_ROOT / "schemas" / "claim-route.schema.json",
+    "example": REPO_ROOT / "examples" / "claim-route.example.yaml",
+},
+
 
 if __name__ == "__main__":
     sys.exit(main())
