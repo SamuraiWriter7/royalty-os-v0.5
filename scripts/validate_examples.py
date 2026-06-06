@@ -13,170 +13,186 @@ import json
 import sys
 from pathlib import Path
 
+# -----------------------------
+# Safe imports
+# -----------------------------
 try:
-import yaml
+    import yaml
 except ImportError as exc:
-print("Missing dependency: PyYAML")
-print("Install with: pip install pyyaml")
-raise SystemExit(1) from exc
+    print("Missing dependency: PyYAML")
+    print("Install with: pip install pyyaml")
+    raise SystemExit(1) from exc
 
 try:
-from jsonschema import Draft202012Validator, FormatChecker
-from jsonschema.exceptions import SchemaError, ValidationError
+    from jsonschema import Draft202012Validator, FormatChecker
+    from jsonschema.exceptions import SchemaError, ValidationError
 except ImportError as exc:
-print("Missing dependency: jsonschema")
-print("Install with: pip install jsonschema")
-raise SystemExit(1) from exc
+    print("Missing dependency: jsonschema")
+    print("Install with: pip install jsonschema")
+    raise SystemExit(1) from exc
 
-REPO_ROOT = Path(**file**).resolve().parents[1]
+# -----------------------------
+# Paths
+# -----------------------------
+REPO_ROOT = Path(__file__).resolve().parents[1]
 
 VALIDATION_TARGETS = [
-{
-"name": "Personal AI Agent",
-"schema": REPO_ROOT / "schemas" / "personal-agent.schema.json",
-"example": REPO_ROOT / "examples" / "personal-agent.example.yaml",
-},
-{
-"name": "Personal Trace Fingerprint",
-"schema": REPO_ROOT / "schemas" / "trace-fingerprint.schema.json",
-"example": REPO_ROOT / "examples" / "trace-fingerprint.example.yaml",
-},
-{
-"name": "Agent-Mediated Usage Detection Event",
-"schema": REPO_ROOT / "schemas" / "usage-detection-event.schema.json",
-"example": REPO_ROOT / "examples" / "usage-detection-event.example.yaml",
-},
-{
-"name": "Attribution Route",
-"schema": REPO_ROOT / "schemas" / "attribution-route.schema.json",
-"example": REPO_ROOT / "examples" / "attribution-route.example.yaml",
-},
-{
-"name": "Claim Route",
-"schema": REPO_ROOT / "schemas" / "claim-route.schema.json",
-"example": REPO_ROOT / "examples" / "claim-route.example.yaml",
-},
-{
-"name": "Return Route",
-"schema": REPO_ROOT / "schemas" / "return-route.schema.json",
-"example": REPO_ROOT / "examples" / "return-route.example.yaml",
-},
-{
-"name": "Representative Event",
-"schema": REPO_ROOT / "schemas" / "representative-event.schema.json",
-"example": REPO_ROOT / "examples" / "representative-event.example.yaml",
-},
-{
-"name": "Agent-Mediated Value Flow",
-"schema": REPO_ROOT / "schemas" / "agent-mediated-value-flow.schema.json",
-"example": REPO_ROOT / "examples" / "agent-mediated-value-flow.example.yaml",
-},
+    {
+        "name": "Personal AI Agent",
+        "schema": REPO_ROOT / "schemas" / "personal-agent.schema.json",
+        "example": REPO_ROOT / "examples" / "personal-agent.example.yaml",
+    },
+    {
+        "name": "Personal Trace Fingerprint",
+        "schema": REPO_ROOT / "schemas" / "trace-fingerprint.schema.json",
+        "example": REPO_ROOT / "examples" / "trace-fingerprint.example.yaml",
+    },
+    {
+        "name": "Agent-Mediated Usage Detection Event",
+        "schema": REPO_ROOT / "schemas" / "usage-detection-event.schema.json",
+        "example": REPO_ROOT / "examples" / "usage-detection-event.example.yaml",
+    },
+    {
+        "name": "Attribution Route",
+        "schema": REPO_ROOT / "schemas" / "attribution-route.schema.json",
+        "example": REPO_ROOT / "examples" / "attribution-route.example.yaml",
+    },
+    {
+        "name": "Claim Route",
+        "schema": REPO_ROOT / "schemas" / "claim-route.schema.json",
+        "example": REPO_ROOT / "examples" / "claim-route.example.yaml",
+    },
+    {
+        "name": "Return Route",
+        "schema": REPO_ROOT / "schemas" / "return-route.schema.json",
+        "example": REPO_ROOT / "examples" / "return-route.example.yaml",
+    },
+    {
+        "name": "Representative Event",
+        "schema": REPO_ROOT / "schemas" / "representative-event.schema.json",
+        "example": REPO_ROOT / "examples" / "representative-event.example.yaml",
+    },
+    {
+        "name": "Agent-Mediated Value Flow",
+        "schema": REPO_ROOT / "schemas" / "agent-mediated-value-flow.schema.json",
+        "example": REPO_ROOT / "examples" / "agent-mediated-value-flow.example.yaml",
+    },
 ]
 
+# -----------------------------
+# Loaders
+# -----------------------------
 def load_json(path: Path) -> dict:
-"""Load a JSON file."""
-try:
-with path.open("r", encoding="utf-8") as file:
-return json.load(file)
-except FileNotFoundError as exc:
-raise RuntimeError(f"JSON file not found: {path}") from exc
-except json.JSONDecodeError as exc:
-raise RuntimeError(f"Invalid JSON in {path}: {exc}") from exc
+    """Load a JSON file."""
+    try:
+        with path.open("r", encoding="utf-8") as file:
+            return json.load(file)
+    except FileNotFoundError as exc:
+        raise RuntimeError(f"JSON file not found: {path}") from exc
+    except json.JSONDecodeError as exc:
+        raise RuntimeError(f"Invalid JSON in {path}: {exc}") from exc
+
 
 def load_yaml(path: Path) -> dict:
-"""Load a YAML file."""
-try:
-with path.open("r", encoding="utf-8") as file:
-data = yaml.safe_load(file)
-except FileNotFoundError as exc:
-raise RuntimeError(f"YAML file not found: {path}") from exc
-except yaml.YAMLError as exc:
-raise RuntimeError(f"Invalid YAML in {path}: {exc}") from exc
+    """Load a YAML file."""
+    try:
+        with path.open("r", encoding="utf-8") as file:
+            data = yaml.safe_load(file)
+    except FileNotFoundError as exc:
+        raise RuntimeError(f"YAML file not found: {path}") from exc
+    except yaml.YAMLError as exc:
+        raise RuntimeError(f"Invalid YAML in {path}: {exc}") from exc
 
-```
-if data is None:
-    raise RuntimeError(f"YAML file is empty: {path}")
+    if data is None:
+        raise RuntimeError(f"YAML file is empty: {path}")
 
-if not isinstance(data, dict):
-    raise RuntimeError(f"YAML root must be an object/mapping: {path}")
+    if not isinstance(data, dict):
+        raise RuntimeError(f"YAML root must be an object/mapping: {path}")
 
-return data
-```
+    return data
 
+
+# -----------------------------
+# Error formatting
+# -----------------------------
 def format_validation_path(error: ValidationError) -> str:
-"""Return a readable JSON path for validation errors."""
-if not error.absolute_path:
-return "$"
+    """Return a readable JSON path for validation errors."""
+    if not error.absolute_path:
+        return "$"
 
-```
-parts = ["$"]
-for item in error.absolute_path:
-    if isinstance(item, int):
-        parts.append(f"[{item}]")
-    else:
-        parts.append(f".{item}")
+    parts = ["$"]
+    for item in error.absolute_path:
+        if isinstance(item, int):
+            parts.append(f"[{item}]")
+        else:
+            parts.append(f".{item}")
 
-return "".join(parts)
-```
+    return "".join(parts)
 
+
+# -----------------------------
+# Validation logic
+# -----------------------------
 def validate_target(name: str, schema_path: Path, example_path: Path) -> None:
-"""Validate one example YAML file against one JSON Schema file."""
-print(f"Validating target: {name}")
-print(f"Schema:  {schema_path.relative_to(REPO_ROOT)}")
-print(f"Example: {example_path.relative_to(REPO_ROOT)}")
+    """Validate one example YAML file against one JSON Schema file."""
+    print(f"Validating target: {name}")
+    print(f"Schema:  {schema_path.relative_to(REPO_ROOT)}")
+    print(f"Example: {example_path.relative_to(REPO_ROOT)}")
 
-```
-schema = load_json(schema_path)
-example = load_yaml(example_path)
+    schema = load_json(schema_path)
+    example = load_yaml(example_path)
 
-try:
-    Draft202012Validator.check_schema(schema)
-except SchemaError as exc:
-    raise RuntimeError(f"Invalid JSON Schema in {schema_path}: {exc.message}") from exc
+    try:
+        Draft202012Validator.check_schema(schema)
+    except SchemaError as exc:
+        raise RuntimeError(f"Invalid JSON Schema in {schema_path}: {exc.message}") from exc
 
-validator = Draft202012Validator(schema, format_checker=FormatChecker())
-errors = sorted(
-    validator.iter_errors(example),
-    key=lambda err: list(err.absolute_path),
-)
+    validator = Draft202012Validator(schema, format_checker=FormatChecker())
+    errors = sorted(
+        validator.iter_errors(example),
+        key=lambda err: list(err.absolute_path),
+    )
 
-if errors:
+    if errors:
+        print("")
+        print("Validation failed.")
+        print(f"Target: {name}")
+        print("")
+
+        for error in errors:
+            path = format_validation_path(error)
+            print(f"- Path: {path}")
+            print(f"  Error: {error.message}")
+
+        raise RuntimeError(f"Validation failed for target: {name}")
+
+    print("Validation passed.")
     print("")
-    print("Validation failed.")
-    print(f"Target: {name}")
-    print("")
 
-    for error in errors:
-        path = format_validation_path(error)
-        print(f"- Path: {path}")
-        print(f"  Error: {error.message}")
 
-    raise RuntimeError(f"Validation failed for target: {name}")
-
-print("Validation passed.")
-print("")
-```
-
+# -----------------------------
+# Main
+# -----------------------------
 def main() -> int:
-"""Run all validation targets."""
-print("Royalty OS v0.5 example validation")
-print("")
+    """Run all validation targets."""
+    print("Royalty OS v0.5 example validation")
+    print("")
 
-```
-try:
-    for target in VALIDATION_TARGETS:
-        validate_target(
-            name=target["name"],
-            schema_path=target["schema"],
-            example_path=target["example"],
-        )
-except RuntimeError as exc:
-    print(str(exc))
-    return 1
+    try:
+        for target in VALIDATION_TARGETS:
+            validate_target(
+                name=target["name"],
+                schema_path=target["schema"],
+                example_path=target["example"],
+            )
+    except RuntimeError as exc:
+        print(str(exc))
+        return 1
 
-print("All examples passed validation.")
-return 0
-```
+    print("All examples passed validation.")
+    return 0
 
-if **name** == "**main**":
-sys.exit(main())
+
+if __name__ == "__main__":
+    sys.exit(main())
+
