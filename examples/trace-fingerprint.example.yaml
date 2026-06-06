@@ -1,0 +1,170 @@
+trace_id: "trace:personal:sample-001"
+schema_version: "v0.5.0-draft"
+trace_name: "Sample Creator Intellectual Trace Fingerprint"
+trace_type: "mixed_trace_fingerprint"
+status: "registered"
+
+owner_reference:
+owner_id: "individual:creator:sample-001"
+owner_type: "creator"
+display_name: "Sample Creator"
+
+agent_reference:
+agent_id: "agent:personal:sample-001"
+agent_role: "trace_manager"
+
+source_references:
+
+* source_id: "doc:sample-article-001"
+  source_type: "article"
+  title: "A Sample Article on AI Value Circulation"
+  public_url: "https://example.com/sample-ai-value-circulation"
+  created_at: "2026-06-06T00:00:00Z"
+  notes: "A public article used as a reference source for this sample trace fingerprint."
+
+* source_id: "repo:royalty-os-v0.5"
+  source_type: "repository"
+  title: "Royalty OS v0.5"
+  public_url: "https://github.com/SamuraiWriter7/royalty-os-v0.5"
+  created_at: "2026-06-06T00:00:00Z"
+  notes: "Repository-level reference associated with the v0.5 personal AI agent royalty layer."
+
+trace_elements:
+
+* element_id: "element:question-structure-001"
+  element_type: "question_structure"
+  description: >
+  A recurring question structure that asks how AI-era value circulation
+  should return value to individuals whose intellectual traces are used
+  in AI-mediated communication.
+  keywords:
+
+  * "AI value circulation"
+  * "personal AI agent"
+  * "intellectual trace"
+  * "royalty routing"
+    evidence_references:
+  * "doc:sample-article-001"
+  * "repo:royalty-os-v0.5"
+    sensitivity: "public"
+
+* element_id: "element:conceptual-framework-001"
+  element_type: "conceptual_framework"
+  description: >
+  A conceptual framework in which personal AI agents act as representative
+  interfaces between human intelligence, trace management, usage detection,
+  attribution routing, claim preparation, and human-reviewed value return.
+  keywords:
+
+  * "Personal AI Agent Royalty OS"
+  * "representative infrastructure"
+  * "trace management"
+  * "human-reviewed value return"
+    evidence_references:
+  * "docs/personal-ai-agent-royalty-os.md"
+  * "specs/royalty-os-v0.5-draft.yaml"
+    sensitivity: "public"
+
+* element_id: "element:terminology-001"
+  element_type: "terminology"
+  description: >
+  A terminology set centered on Personal AI Agent, Personal Trace
+  Fingerprint, Agent-Mediated Usage Detection, Attribution Route,
+  Claim Route, Representative Event Log, and Human-Reviewed Value Return.
+  keywords:
+
+  * "Personal Trace Fingerprint"
+  * "Agent-Mediated Usage Detection"
+  * "Attribution Route"
+  * "Claim Route"
+  * "Representative Event Log"
+    evidence_references:
+  * "schemas/personal-agent.schema.json"
+  * "schemas/trace-fingerprint.schema.json"
+    sensitivity: "public"
+
+* element_id: "element:boundary-principle-001"
+  element_type: "value_pattern"
+  description: >
+  A boundary principle stating that trace fingerprints are reviewable
+  structures and must not be treated as automatic proof of ownership,
+  infringement, compensation, or claim validity.
+  keywords:
+
+  * "human review"
+  * "similarity is not proof"
+  * "no automatic ownership"
+  * "no automatic compensation"
+    evidence_references:
+  * "docs/v0.5-structural-diff.md"
+  * "docs/personal-ai-agent-royalty-os.md"
+    sensitivity: "public"
+
+fingerprint_method:
+method_type: "human_reviewed_agent_assisted"
+method_description: >
+This sample trace fingerprint was structured as a human-reviewable
+record with agent-assisted categorization. It does not include private
+raw trace data and does not assert automatic ownership.
+hash_algorithm: "none"
+human_reviewed: true
+
+confidence_policy:
+default_confidence_level: "requires_human_review"
+confidence_is_not_proof: true
+human_review_required_for_high_confidence: true
+
+review_policy:
+human_review_required: true
+review_required_for:
+- "ownership_interpretation"
+- "attribution_assessment"
+- "usage_detection"
+- "claim_route_creation"
+- "compensation_assessment"
+- "public_disclosure"
+- "external_sharing"
+- "governance_action"
+default_review_status: "unreviewed"
+
+boundary_policy:
+not_ownership_proof: true
+not_infringement_proof: true
+not_compensation_proof: true
+similarity_is_not_proof: true
+requires_human_review: true
+
+privacy_policy:
+minimal_disclosure: true
+private_trace_data_allowed: false
+public_summary_allowed: true
+external_sharing_requires_review: true
+
+related_routes:
+usage_detection_events:
+- "usage:event:sample-001"
+attribution_routes:
+- "attribution:route:sample-001"
+claim_routes:
+- "claim:route:sample-001"
+value_graph_nodes:
+- "value:graph:node:sample-001"
+
+external_references:
+royalty_os_version: "v0.5.0-draft"
+related_specs:
+- "specs/royalty-os-v0.5-draft.yaml"
+related_docs:
+- "docs/v0.5-structural-diff.md"
+- "docs/personal-ai-agent-royalty-os.md"
+related_agent: "agent:personal:sample-001"
+
+notes: >
+This example defines a personal trace fingerprint for a sample creator.
+It represents intellectual trace elements such as question structures,
+conceptual frameworks, terminology, and boundary principles. This record
+is intended for reviewable trace management only. It does not prove
+ownership, infringement, compensation, or claim validity.
+
+created_at: "2026-06-06T00:00:00Z"
+updated_at: "2026-06-06T00:00:00Z"
