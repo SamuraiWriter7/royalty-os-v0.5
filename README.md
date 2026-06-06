@@ -43,6 +43,7 @@ A personal AI agent may help an individual:
 * prepare human-reviewed return route candidates
 * support human review
 * preserve representative event logs
+* connect the full agent-mediated value workflow
 
 The personal AI agent is not the owner of value.
 
@@ -88,6 +89,7 @@ Royalty OS v0.5 builds on that foundation by adding:
 * Return Route
 * Human-Reviewed Value Return
 * Representative Event Log
+* Agent-Mediated Value Flow
 
 The evolution can be summarized as:
 
@@ -131,6 +133,8 @@ Communication Royalty OS handles the communication value layer.
 
 Royalty OS v0.5 handles the personal representative layer.
 
+Together, they prepare a pathway toward AI-era value circulation.
+
 ---
 
 ## Architecture
@@ -153,6 +157,10 @@ Value Graph Layer
 Policy and Governance Review Layer
 ↓
 Human-Reviewed Value Return Layer
+↓
+Representative Event Log Layer
+↓
+Agent-Mediated Value Flow Layer
 ```
 
 ---
@@ -173,6 +181,10 @@ Attribution Route
 Claim Route
 ↓
 Return Route
+↓
+Representative Event Log
+↓
+Agent-Mediated Value Flow
 ```
 
 Meaning:
@@ -189,6 +201,10 @@ How the usage may relate back to the trace
 What review or claim pathway is requested
 ↓
 How value return may be prepared after review
+↓
+How the representative action is logged for auditability
+↓
+How the full agent-mediated value workflow is connected as one reviewable flow
 ```
 
 This flow is intentionally review-based.
@@ -198,6 +214,10 @@ Detection does not automatically become a claim.
 A claim does not automatically become compensation.
 
 A return route does not automatically execute payment.
+
+A representative event does not execute action by itself.
+
+The Agent-Mediated Value Flow connects the full workflow, but it does not create ownership, compensation, payment obligation, enforcement, or claim validity.
 
 ---
 
@@ -305,23 +325,113 @@ It may prepare or reference a pathway that can be reviewed by humans, governance
 
 ### 7. Representative Event Log
 
-A log of actions performed by or through a personal AI agent.
+A representative event log records actions performed by or through a personal AI agent.
 
-Example event types:
+Representative events may include:
 
-* trace_registered
-* usage_detected
-* value_event_created
-* attribution_route_created
-* claim_route_created
-* human_review_requested
-* claim_rejected
-* claim_accepted_for_review
-* return_route_prepared
-* governance_escalated
-* wallet_reference_attached
+* trace registration
+* usage detection
+* value event creation
+* attribution route creation
+* claim route creation
+* return route preparation
+* human review requests
+* governance escalation
+* wallet reference attachment
+* external process preparation
+* record archival
 
-The Representative Event Log provides transparency over agent-mediated activity.
+A representative event does not prove ownership, infringement, compensation, payment obligation, or claim validity.
+
+It exists to make agent-mediated activity visible and auditable.
+
+In short:
+
+```text
+Representative Event Log
+= audit trail for personal AI agent activity
+```
+
+---
+
+### 8. Agent-Mediated Value Flow
+
+The Agent-Mediated Value Flow is an integrated workflow record that connects the full v0.5 structure.
+
+It links:
+
+* Personal AI Agent
+* Personal Trace Fingerprint
+* Agent-Mediated Usage Detection Event
+* Attribution Route
+* Claim Route
+* Return Route
+* Representative Event Log
+
+The flow is useful for:
+
+* documenting the full value-routing path
+* showing how individual records relate to one another
+* supporting governance review
+* supporting auditability
+* demonstrating the full v0.5 lifecycle
+
+The Agent-Mediated Value Flow is not an execution engine.
+
+It does not automatically determine ownership, calculate compensation, execute payment, enforce claims, or create legal obligations.
+
+In short:
+
+```text
+Agent-Mediated Value Flow
+= full reviewable workflow connecting all v0.5 records
+```
+
+---
+
+## Agent-Mediated Value Routing
+
+Agent-Mediated Value Routing is the routing logic behind Royalty OS v0.5.
+
+It defines how a personal AI agent may assist an individual in moving from intellectual trace management to human-reviewed value return preparation.
+
+The routing structure is:
+
+```text
+Representation
+↓
+Trace
+↓
+Detection
+↓
+Attribution
+↓
+Claim
+↓
+Return
+↓
+Audit
+↓
+Flow
+```
+
+The routing layer exists to keep the system reviewable.
+
+It ensures that:
+
+* detection is not proof
+* attribution is not payment
+* a claim route is not enforcement
+* a return route is not payment execution
+* a representative event is not execution
+* the integrated flow is not an automatic settlement engine
+
+In short:
+
+```text
+Agent-Mediated Value Routing
+= responsible routing infrastructure for personal AI agent value representation
+```
 
 ---
 
@@ -340,6 +450,8 @@ The system must not:
 * treat attribution as payment
 * treat a claim route as enforcement
 * treat a return route as payment execution
+* treat a representative event as execution
+* treat an integrated flow as a settlement engine
 * replace human review
 * replace legal, contractual, or governance processes
 
@@ -351,6 +463,8 @@ The system may:
 * route attribution candidates
 * prepare claim candidates
 * prepare return route candidates
+* preserve representative logs
+* connect records into an integrated flow
 * support human review
 * connect to external governance or settlement systems
 * preserve auditable logs
@@ -369,7 +483,8 @@ royalty-os-v0.5/
 ├── CHANGELOG.md
 ├── docs/
 │   ├── v0.5-structural-diff.md
-│   └── personal-ai-agent-royalty-os.md
+│   ├── personal-ai-agent-royalty-os.md
+│   └── agent-mediated-value-routing.md
 ├── specs/
 │   └── royalty-os-v0.5-draft.yaml
 ├── schemas/
@@ -378,14 +493,18 @@ royalty-os-v0.5/
 │   ├── usage-detection-event.schema.json
 │   ├── attribution-route.schema.json
 │   ├── claim-route.schema.json
-│   └── return-route.schema.json
+│   ├── return-route.schema.json
+│   ├── representative-event.schema.json
+│   └── agent-mediated-value-flow.schema.json
 ├── examples/
 │   ├── personal-agent.example.yaml
 │   ├── trace-fingerprint.example.yaml
 │   ├── usage-detection-event.example.yaml
 │   ├── attribution-route.example.yaml
 │   ├── claim-route.example.yaml
-│   └── return-route.example.yaml
+│   ├── return-route.example.yaml
+│   ├── representative-event.example.yaml
+│   └── agent-mediated-value-flow.example.yaml
 ├── scripts/
 │   └── validate_examples.py
 └── .github/
@@ -410,6 +529,16 @@ It explains how v0.5 moves from value relationship infrastructure to personal re
 Defines the Personal AI Agent Royalty OS as the central layer of v0.5.
 
 It explains the role, purpose, boundaries, and responsibilities of personal AI agents in AI-era value circulation.
+
+---
+
+### `docs/agent-mediated-value-routing.md`
+
+Defines the routing logic behind Royalty OS v0.5.
+
+It explains how personal AI agents move from trace management to usage detection, attribution routing, claim preparation, return route preparation, representative event logging, and integrated value flow.
+
+This document is the human-readable design guide for the full v0.5 workflow.
 
 ---
 
@@ -471,6 +600,22 @@ Defines how human-reviewed value return pathways may be prepared through attribu
 
 ---
 
+### `schemas/representative-event.schema.json`
+
+Validates a Representative Event record.
+
+Defines how actions performed by or through a personal AI agent are recorded for transparency and auditability.
+
+---
+
+### `schemas/agent-mediated-value-flow.schema.json`
+
+Validates an Agent-Mediated Value Flow record.
+
+Defines how the full v0.5 workflow is connected from personal AI representation to trace management, usage detection, attribution routing, claim route preparation, return route preparation, and representative event logging.
+
+---
+
 ## Examples
 
 ### `examples/personal-agent.example.yaml`
@@ -509,6 +654,40 @@ Example human-reviewed return route for attribution, citation, royalty intent, m
 
 ---
 
+### `examples/representative-event.example.yaml`
+
+Example representative event record.
+
+Demonstrates how a personal AI agent records the preparation of a return route candidate on behalf of a represented creator.
+
+---
+
+### `examples/agent-mediated-value-flow.example.yaml`
+
+Example integrated agent-mediated value flow.
+
+Demonstrates the full Royalty OS v0.5 workflow:
+
+```text
+Personal AI Agent
+↓
+Personal Trace Fingerprint
+↓
+Usage Detection Event
+↓
+Attribution Route
+↓
+Claim Route
+↓
+Return Route
+↓
+Representative Event Log
+```
+
+This example shows how all major records connect into one reviewable value-routing flow.
+
+---
+
 ## Validation
 
 Royalty OS v0.5 includes a validation script for example YAML files.
@@ -529,6 +708,8 @@ Agent-Mediated Usage Detection Event
 Attribution Route
 Claim Route
 Return Route
+Representative Event
+Agent-Mediated Value Flow
 ```
 
 GitHub Actions also validates examples automatically through:
@@ -545,13 +726,16 @@ GitHub Actions also validates examples automatically through:
 1. README.md
 2. docs/v0.5-structural-diff.md
 3. docs/personal-ai-agent-royalty-os.md
-4. specs/royalty-os-v0.5-draft.yaml
-5. schemas/personal-agent.schema.json
-6. schemas/trace-fingerprint.schema.json
-7. schemas/usage-detection-event.schema.json
-8. schemas/attribution-route.schema.json
-9. schemas/claim-route.schema.json
-10. schemas/return-route.schema.json
+4. docs/agent-mediated-value-routing.md
+5. specs/royalty-os-v0.5-draft.yaml
+6. schemas/personal-agent.schema.json
+7. schemas/trace-fingerprint.schema.json
+8. schemas/usage-detection-event.schema.json
+9. schemas/attribution-route.schema.json
+10. schemas/claim-route.schema.json
+11. schemas/return-route.schema.json
+12. schemas/representative-event.schema.json
+13. schemas/agent-mediated-value-flow.schema.json
 ```
 
 ---
@@ -574,7 +758,7 @@ Royalty OS v0.5 is not a payment processor.
 
 Royalty OS v0.5 is not a copyright enforcement bot.
 
-It is a structural layer for responsible agent-mediated trace management, attribution routing, claim preparation, and value return review.
+It is a structural layer for responsible agent-mediated trace management, attribution routing, claim preparation, value return review, and auditability.
 
 ---
 
@@ -589,7 +773,15 @@ Schema locked: false
 Release track: conceptual specification + validation package
 ```
 
-The current draft includes initial schemas, examples, a validation script, and a GitHub Actions workflow.
+The current draft includes:
+
+* conceptual documents
+* machine-readable specification
+* JSON Schemas
+* YAML examples
+* validation script
+* GitHub Actions workflow
+* integrated agent-mediated value flow
 
 ---
 
@@ -605,6 +797,8 @@ It allows individuals to appear inside value networks through:
 * attribution routing
 * claim preparation
 * human-reviewed value return
+* audit logging
+* integrated value flow
 
 The personal AI agent is not a value owner.
 
@@ -619,5 +813,12 @@ In short:
 ```text
 v0.4 structured the value relationship.
 v0.5 gives the individual a representative inside that relationship.
+```
+
+And:
+
+```text
+Agent-Mediated Value Routing
+= responsible routing infrastructure for personal AI agent value representation
 ```
 
