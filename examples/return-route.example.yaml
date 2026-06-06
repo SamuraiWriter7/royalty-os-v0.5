@@ -1,0 +1,262 @@
+return_route_id: "return:route:sample-001"
+schema_version: "v0.5.0-draft"
+route_type: "return_route"
+status: "candidate"
+
+beneficiary_reference:
+beneficiary_id: "individual:creator:sample-001"
+beneficiary_type: "creator"
+display_name: "Sample Creator"
+
+representative_agent:
+agent_id: "agent:personal:sample-001"
+agent_role: "return_route_assistant"
+agent_record_reference: "examples/personal-agent.example.yaml"
+
+source_trace_reference:
+trace_id: "trace:personal:sample-001"
+trace_type: "mixed_trace_fingerprint"
+trace_record_reference: "examples/trace-fingerprint.example.yaml"
+trace_element_ids:
+- "element:question-structure-001"
+- "element:conceptual-framework-001"
+- "element:terminology-001"
+- "element:boundary-principle-001"
+
+claim_route_reference:
+claim_route_id: "claim:route:sample-001"
+claim_route_record_reference: "examples/claim-route.example.yaml"
+claim_route_status: "candidate"
+
+attribution_route_reference:
+attribution_route_id: "attribution:route:sample-001"
+attribution_route_record_reference: "examples/attribution-route.example.yaml"
+attribution_route_status: "candidate"
+
+usage_detection_event_reference:
+event_id: "usage:event:sample-001"
+event_record_reference: "examples/usage-detection-event.example.yaml"
+event_status: "candidate"
+
+return_request:
+return_types:
+- "attribution"
+- "citation"
+- "royalty_intent"
+- "micro_royalty_routing"
+- "wallet_reference"
+- "governance_reviewed_compensation_pathway"
+requested_actions:
+- "prepare_attribution"
+- "prepare_citation"
+- "prepare_royalty_review"
+- "prepare_micro_royalty_route"
+- "attach_wallet_reference"
+- "submit_for_governance_review"
+request_summary: >
+This return route prepares a human-reviewed pathway for possible
+attribution, citation, royalty review, micro-royalty routing, and
+wallet reference attachment. It is based on the related claim route,
+attribution route, usage detection event, and personal trace fingerprint.
+This record does not execute payment and does not establish ownership,
+infringement, compensation, payment obligation, or claim validity.
+requested_by: "individual:creator:sample-001"
+
+return_assessment:
+confidence_level: "requires_human_review"
+assessment_summary: >
+The return route is prepared because the related claim route requests
+review of possible attribution and value return. The route may support
+citation, acknowledgment, reputation credit, royalty intent, or external
+settlement preparation after human and governance review. This assessment
+is reviewable only and must not be treated as proof or as a payment
+instruction.
+supporting_factors:
+- "claim_route"
+- "attribution_route"
+- "usage_detection_event"
+- "value_event_candidate"
+- "value_graph_reference"
+limitations: >
+The relationship may reflect common terminology, independent reasoning,
+public discourse, or parallel conceptual development. Human review is
+required before attribution, compensation assessment, wallet reference
+use, external process preparation, or value return execution.
+
+return_pathway:
+pathway_type: "mixed_return_pathway"
+pathway_status: "candidate"
+pathway_summary: >
+The proposed pathway combines attribution, citation, royalty intent,
+micro-royalty routing, and wallet reference preparation. Any execution,
+settlement, payment, or compensation must occur outside Royalty OS v0.5
+after human or governance review.
+external_execution_required: true
+external_execution_allowed_after_review: false
+
+wallet_reference:
+wallet_reference_id: "wallet:reference:sample-001"
+wallet_type: "external_wallet_reference"
+wallet_reference_status: "candidate"
+sensitive_credentials_included: false
+wallet_notes: >
+This is a non-sensitive wallet reference placeholder. No private keys,
+payment credentials, account secrets, or executable payment instructions
+are included in this record.
+
+return_units:
+
+* unit_id: "return:unit:citation:sample-001"
+  unit_type: "citation"
+  unit_status: "candidate"
+  unit_description: >
+  A possible citation or source link may be prepared if human review
+  confirms that attribution is appropriate.
+  amount_reference:
+  amount_type: "none"
+  amount_is_reviewed: false
+  amount_is_payment_instruction: false
+
+* unit_id: "return:unit:acknowledgment:sample-001"
+  unit_type: "acknowledgment"
+  unit_status: "candidate"
+  unit_description: >
+  A possible acknowledgment may be prepared as a non-monetary value
+  return if the relationship is accepted for review.
+  amount_reference:
+  amount_type: "none"
+  amount_is_reviewed: false
+  amount_is_payment_instruction: false
+
+* unit_id: "return:unit:royalty-intent:sample-001"
+  unit_type: "royalty_intent"
+  unit_status: "candidate"
+  unit_description: >
+  A royalty intent may be recorded for later review. This does not
+  calculate compensation and does not create an automatic payment
+  obligation.
+  amount_reference:
+  amount_type: "unspecified"
+  amount_is_reviewed: false
+  amount_is_payment_instruction: false
+
+* unit_id: "return:unit:micro-royalty:sample-001"
+  unit_type: "micro_royalty_intent"
+  unit_status: "candidate"
+  unit_description: >
+  A possible micro-royalty route may be prepared for external review.
+  Any settlement or transfer must occur outside the core OS boundary.
+  amount_reference:
+  amount_type: "external_settlement_amount_reference"
+  currency_or_unit: "external-review-required"
+  amount_is_reviewed: false
+  amount_is_payment_instruction: false
+
+evidence:
+evidence_summary: >
+The return route is supported by the related claim route, attribution
+route, usage detection event, trace fingerprint, and value graph
+reference. These references are review materials only and do not prove
+ownership, infringement, compensation, payment obligation, or claim
+validity.
+evidence_references:
+- "claim:route:sample-001"
+- "attribution:route:sample-001"
+- "usage:event:sample-001"
+- "trace:personal:sample-001"
+- "value:event:candidate:sample-001"
+private_evidence_included: false
+
+value_graph_reference:
+value_graph_node_id: "value:graph:node:sample-001"
+value_graph_edge_id: "value:graph:edge:sample-001"
+value_event_candidate_id: "value:event:candidate:sample-001"
+
+review_policy:
+human_review_required: true
+review_required_for:
+- "return_interpretation"
+- "claim_interpretation"
+- "ownership_interpretation"
+- "attribution_interpretation"
+- "usage_interpretation"
+- "compensation_assessment"
+- "payment_execution"
+- "wallet_reference"
+- "public_disclosure"
+- "external_sharing"
+- "external_process"
+- "governance_action"
+- "escalation"
+default_review_status: "unreviewed"
+
+boundary_policy:
+not_ownership_proof: true
+not_infringement_proof: true
+not_compensation_proof: true
+not_payment_instruction: true
+not_claim_validity_proof: true
+return_route_is_not_execution: true
+similarity_is_not_proof: true
+requires_human_review: true
+no_automatic_accusation: true
+no_automatic_enforcement: true
+no_automatic_payment: true
+
+privacy_policy:
+minimal_disclosure: true
+private_trace_data_included: false
+private_evidence_included: false
+sensitive_wallet_credentials_included: false
+public_summary_allowed: true
+external_sharing_requires_review: true
+
+governance:
+governance_status: "review_requested"
+reviewer_notes: >
+This return route is prepared for review only. It should not be treated
+as proof of ownership, infringement, compensation, payment obligation,
+or claim validity. Review should determine whether attribution, citation,
+acknowledgment, royalty review, micro-royalty routing, external settlement
+preparation, archival, rejection, or escalation is appropriate.
+governance_actions:
+- "review_request"
+- "attribution_review"
+- "claim_review"
+- "return_route_review"
+- "compensation_review"
+- "external_process_review"
+
+related_routes:
+attribution_routes:
+- "attribution:route:sample-001"
+claim_routes:
+- "claim:route:sample-001"
+usage_detection_events:
+- "usage:event:sample-001"
+representative_events:
+- "representative:event:sample-001"
+
+external_references:
+royalty_os_version: "v0.5.0-draft"
+related_specs:
+- "specs/royalty-os-v0.5-draft.yaml"
+related_docs:
+- "docs/v0.5-structural-diff.md"
+- "docs/personal-ai-agent-royalty-os.md"
+related_trace: "trace:personal:sample-001"
+related_usage_event: "usage:event:sample-001"
+related_attribution_route: "attribution:route:sample-001"
+related_claim_route: "claim:route:sample-001"
+related_agent: "agent:personal:sample-001"
+
+notes: >
+This example defines a return route prepared by a personal AI agent on
+behalf of a sample creator. It structures a human-reviewed pathway for
+attribution, citation, acknowledgment, royalty intent, micro-royalty
+routing, wallet reference preparation, and external settlement review.
+It does not execute payment, calculate compensation, enforce claims, or
+create automatic legal obligations.
+
+created_at: "2026-06-06T00:00:00Z"
+updated_at: "2026-06-06T00:00:00Z"
